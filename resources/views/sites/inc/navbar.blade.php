@@ -1,3 +1,9 @@
+@php
+    use App\ViewModels\Menu\MenuViewModel;
+    /**
+* @var MenuViewModel $menuViewModel
+ */
+@endphp
 <nav class="text-uppercase navbar navbar-expand-lg bg-main ">
     <!-- Container wrapper -->
     <div class="container">
@@ -17,74 +23,32 @@
         <!-- Collapsible wrapper -->
         <div class="collapse navbar-collapse" id="navbarLeftAlignExample">
             <!-- Left links -->
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0 justify-content-center d-flex align-items-center ">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 justify-content-center d-flex align-items-center w-100">
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="#">
                         <img alt="logo" src="https://dodongdiepoanh.com/assets/images/logo.png" style="width: 15em">
                     </a>
                 </li>
-                <li class="nav-item fw-bold ">
-                    <a class="nav-link text-white " href="#">Trang chủ</a>
-                </li>
-                <li class="nav-item fw-bold ">
-                    <a class="nav-link text-white " href="#">Giới thiệu</a>
-                </li>
-                <!-- Navbar dropdown -->
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle text-white fw-bold" href="#" id="navbarDropdownMenuLink"
-                       role="button"
-                       data-mdb-toggle="dropdown" aria-expanded="false">
-                        Sản phẩm
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <li>
-                            <a class="dropdown-item" href="#">Action</a>
+                @foreach($menuViewModel->getMenuObject()->getChildren() as $menu)
+                    @if($menu->getChildren()==[])
+                        <li class="nav-item fw-bold ">
+                            <a class="nav-link text-white " href="{{$menu->getUrl()??"#"}}">{{$menu->getTitle()}}</a>
                         </li>
-                        <li>
-                            <a class="dropdown-item" href="#">Another action</a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="#">
-                                Submenu &raquo;
+                    @else
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-white fw-bold" href="#" id="{{$menu->getTitle()}}"
+                               role="button"
+                               data-mdb-toggle="dropdown" aria-expanded="false">
+                                {{$menu->getTitle()}}
                             </a>
-                            <ul class="dropdown-menu dropdown-submenu">
-                                <li>
-                                    <a class="dropdown-item" href="#">Submenu item 1</a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="#">Submenu item 2</a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="#">Submenu item 3 &raquo; </a>
-                                    <ul class="dropdown-menu dropdown-submenu">
-                                        <li>
-                                            <a class="dropdown-item" href="#">Multi level 1</a>
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item" href="#">Multi level 2</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="#">Submenu item 4</a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="#">Submenu item 5</a>
-                                </li>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                @foreach($menu->getChildren() as $subMenu)
+                                    @include("sites.inc.sub-menu",["menu"=>$subMenu])
+                                @endforeach
                             </ul>
                         </li>
-                    </ul>
-                </li>
-                <li class="nav-item fw-bold ">
-                    <a class="nav-link text-white " href="#">Công trình tiêu biểu</a>
-                </li>
-                <li class="nav-item fw-bold ">
-                    <a class="nav-link text-white " href="#">Tin tức</a>
-                </li>
-                <li class="nav-item fw-bold ">
-                    <a class="nav-link text-white " href="#">Liên hệ</a>
-                </li>
-
+                    @endif
+                @endforeach
             </ul>
 
             <!-- Left links -->

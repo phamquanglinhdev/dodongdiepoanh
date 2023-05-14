@@ -83,8 +83,8 @@
 
     <!-- Copyright -->
     <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
-        © 2021 Copyright:
-        <a class="text-reset fw-bold" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+        © {{\Illuminate\Support\Carbon::now()->year}} Copyright:
+        <a class="text-reset fw-bold" href="https://mdbootstrap.com/">Dodongdiepoanh.com</a>
     </div>
     <!-- Copyright -->
 </footer>

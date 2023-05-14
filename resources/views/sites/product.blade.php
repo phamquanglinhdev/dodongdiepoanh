@@ -9,8 +9,8 @@
     <div class="container pt-5">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{{route("index")}}">Trang chủ</a></li>
-                <li class="breadcrumb-item"><a href="#">Danh mục</a></li>
+                <li class="breadcrumb-item"><a class="text-main fw-bold" href="{{route("index")}}">Trang chủ</a></li>
+                <li class="breadcrumb-item text-main"><a class="text-main fw-bold" href="#">Danh mục</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Sản phẩm</li>
             </ol>
         </nav>
@@ -79,10 +79,24 @@
                         <i class="fas fa-store p-2"></i>
                         <span><b>Tình trạng </b>: Còn hàng</span>
                     </div>
-                    <button class="btn bg-main text-white my-5">
-                        <i class="fas fa-phone-volume fa-2x p-1"></i>
-                        <a class="text-uppercase h5 text-white" href="tel:84949806083">Gọi ngay 0949 806 083</a>
-                    </button>
+                    <div class="row mt-5">
+                        <div class="col-md-6 col-12">
+                            <button class="w-100 btn bg-main text-white my-1 d-flex align-items-center">
+                                <i class="fas fa-phone-volume fa-2x p-1"></i>
+                                <div>
+                                    <a class="text-uppercase h5 text-white" href="tel:84949806083">0949 806 083</a>
+                                </div>
+                            </button>
+                        </div>
+                        <div class="col-md-6 col-12">
+                            <button class="w-100 btn bg-primary text-white my-1 d-flex align-items-center">
+                                <img alt="zalo-white" src="{{asset("img/zalo-white.png")}}" style="width: 2.5em" class="p-1">
+                                <div>
+                                    <a class="text-uppercase h5 text-white" href="#">Đồ đồng Điệp Oanh</a>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

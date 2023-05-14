@@ -36,3 +36,6 @@
     background:#fff;
     padding:0 10px;
 }
+.disable-after:after{
+    content: none!important;
+}

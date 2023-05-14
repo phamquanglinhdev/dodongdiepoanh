@@ -12,4 +12,9 @@ class ProductController extends Controller
     {
         return view("sites.product");
     }
+
+    public function listProductAction(int $category_id = 1): View
+    {
+        return \view("sites.products");
+    }
 }
