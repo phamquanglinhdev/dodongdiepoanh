@@ -20,7 +20,7 @@
             <i class="fas fa-bars text-white"></i>
         </button>
         <a class="nav-link active d-lg-none d-block" aria-current="page" href="{{route("index")}}">
-            <img alt="logo" src="https://dodongdiepoanh.com/assets/images/logo.png" style="width: 15em">
+            <img alt="logo" src="{{asset("img/logo.png")}}" style="width: 15em">
         </a>
         <!-- Collapsible wrapper -->
         <div class="collapse navbar-collapse" id="navbarLeftAlignExample">
@@ -28,7 +28,7 @@
             <ul class="navbar-nav me-auto mb-2 mb-lg-0 justify-content-center d-flex align-items-center w-100">
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="{{route("index")}}">
-                        <img alt="logo" src="https://dodongdiepoanh.com/assets/images/logo.png" style="width: 15em">
+                        <img alt="logo" src="{{asset("img/logo.png")}}" style="width: 15em">
                     </a>
                 </li>
                 @foreach($menuViewModel->getMenuObject()->getChildren() as $menu)
