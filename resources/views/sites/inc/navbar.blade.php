@@ -8,25 +8,29 @@
     <!-- Container wrapper -->
     <div class="container">
         <!-- Toggle button -->
-        <button
-            class="navbar-toggler"
-            type="button"
-            data-mdb-toggle="collapse"
-            data-mdb-target="#navbarLeftAlignExample"
-            aria-controls="navbarLeftAlignExample"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-        >
-            <i class="fas fa-bars text-white"></i>
-        </button>
-        <a class="nav-link active d-lg-none d-block" aria-current="page" href="{{route("index")}}">
-            <img alt="logo" src="{{asset("img/logo.png")}}" style="width: 15em">
-        </a>
+        <div class="d-flex">
+            <button
+                class="navbar-toggler"
+                type="button"
+                data-mdb-toggle="collapse"
+                data-mdb-target="#navbarLeftAlignExample"
+                aria-controls="navbarLeftAlignExample"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+            >
+                <i class="fas fa-bars text-white"></i>
+            </button>
+            <div>
+                <a class="nav-link active d-lg-none d-block`" aria-current="page" href="{{route("index")}}">
+                    <img alt="logo" src="{{asset("img/logo.png")}}" style="width: 15em">
+                </a>
+            </div>
+        </div>
         <!-- Collapsible wrapper -->
         <div class="collapse navbar-collapse" id="navbarLeftAlignExample">
             <!-- Left links -->
             <ul class="navbar-nav me-auto mb-2 mb-lg-0 justify-content-center d-flex align-items-center w-100">
-                <li class="nav-item">
+                <li class="nav-item d-none d-lg-block">
                     <a class="nav-link active" aria-current="page" href="{{route("index")}}">
                         <img alt="logo" src="{{asset("img/logo.png")}}" style="width: 15em">
                     </a>
@@ -56,15 +60,6 @@
             <!-- Left links -->
         </div>
         <!-- Collapsible wrapper -->
-        <div class="d-flex align-items-center">
-            <!-- Icon -->
-            <a class="text-reset me-3" href="#">
-                <i class="fab fa-facebook text-white"></i>
-            </a>
-            <a class="text-reset me-3" href="#">
-                <i class="fab fa-youtube text-white"></i>
-            </a>
-        </div>
         <!-- Right elements -->
     </div>
 
