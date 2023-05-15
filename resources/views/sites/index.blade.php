@@ -36,7 +36,6 @@
             </div>
             <div class="col-md-9 col-12">
                 @include("components.top-product")
-                @include("components.top-product")
             </div>
         </div>
     </div>

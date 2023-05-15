@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="{{asset("css/mdb.min.css")}}"/>
     <link rel="stylesheet" href="{{asset("css/app.css")}}"/>
     @stack("page_css")
+
 </head>
 <body>
 <!-- Start your project here-->
@@ -29,6 +30,7 @@
 <div class="py-3"></div>
 <!-- End your project here-->
 @include("sites.inc.footer")
+@stack("modal")
 <!-- MDB -->
 <script type="text/javascript" src="{{asset("js/mdb.min.js")}}"></script>
 <!-- Custom scripts -->

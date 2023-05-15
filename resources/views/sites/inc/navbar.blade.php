@@ -4,7 +4,7 @@
 * @var MenuViewModel $menuViewModel
  */
 @endphp
-<nav class="text-uppercase navbar navbar-expand-lg bg-main ">
+<nav class="sticky-top shadow text-uppercase navbar navbar-expand-lg bg-main ">
     <!-- Container wrapper -->
     <div class="container">
         <!-- Toggle button -->
@@ -17,15 +17,17 @@
             aria-expanded="false"
             aria-label="Toggle navigation"
         >
-            <i class="fas fa-bars"></i>
+            <i class="fas fa-bars text-white"></i>
         </button>
-
+        <a class="nav-link active d-lg-none d-block" aria-current="page" href="{{route("index")}}">
+            <img alt="logo" src="https://dodongdiepoanh.com/assets/images/logo.png" style="width: 15em">
+        </a>
         <!-- Collapsible wrapper -->
         <div class="collapse navbar-collapse" id="navbarLeftAlignExample">
             <!-- Left links -->
             <ul class="navbar-nav me-auto mb-2 mb-lg-0 justify-content-center d-flex align-items-center w-100">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">
+                    <a class="nav-link active" aria-current="page" href="{{route("index")}}">
                         <img alt="logo" src="https://dodongdiepoanh.com/assets/images/logo.png" style="width: 15em">
                     </a>
                 </li>
@@ -57,10 +59,10 @@
         <div class="d-flex align-items-center">
             <!-- Icon -->
             <a class="text-reset me-3" href="#">
-                <i class="fab fa-facebook text-white "></i>
+                <i class="fab fa-facebook text-white"></i>
             </a>
             <a class="text-reset me-3" href="#">
-                <i class="fab fa-youtube text-white "></i>
+                <i class="fab fa-youtube text-white"></i>
             </a>
         </div>
         <!-- Right elements -->
