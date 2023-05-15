@@ -35,7 +35,7 @@
                 <div class="col-lg-3 d-lg-block d-none">
                     @include("sites.inc.right-bar")
                 </div>
-                <div class="col-md-9 col-12">
+                <div class="col-lg-9 col-12">
                     @include("components.top-product")
                 </div>
             </div>
