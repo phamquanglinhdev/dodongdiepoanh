@@ -5,7 +5,7 @@
     */
 @endphp
 @foreach($topProductViewModel->getTopProductsObjects() as $key => $topProductObject)
-    <div class="container-fluid">
+    <div class="">
         <div class="row">
             <div class="col-lg-3 col-6 col-12 mt-lg-0 mt-3 px-lg-3 p-0">
                 <div class="text-white bg-main p-3 text-uppercase">{{$key}}</div>

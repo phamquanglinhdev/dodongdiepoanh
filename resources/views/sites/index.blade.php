@@ -3,7 +3,7 @@
     @endphp
 @extends("layouts.app")
 @section("title")
-Đồ đồng Điệp Oanh
+    Đồ đồng Điệp Oanh
 @endsection
 @section("content")
     <div id="carouselExampleControls" class="carousel slide" data-mdb-ride="carousel">
@@ -29,20 +29,22 @@
             <span class="visually-hidden">Next</span>
         </button>
     </div>
-    <div class="container-lg-fluid px-lg-5 mt-lg-5">
-        <div class="row">
-            <div class="col-lg-3 d-lg-block d-none">
-                @include("sites.inc.right-bar")
-            </div>
-            <div class="col-md-9 col-12">
-                @include("components.top-product")
+    <div class="container-fluid">
+        <div class="px-lg-5 mt-lg-5">
+            <div class="row">
+                <div class="col-lg-3 d-lg-block d-none">
+                    @include("sites.inc.right-bar")
+                </div>
+                <div class="col-md-9 col-12">
+                    @include("components.top-product")
+                </div>
             </div>
         </div>
-    </div>
-    <div class="container-lg-fluid px-lg-5">
-        @include("components.top-news")
-    </div>
-    <div class="container-lg-fluid px-lg-5">
-        @include("components.top-video")
+        <div class="container-lg-fluid px-lg-5">
+            @include("components.top-news")
+        </div>
+        <div class="container-lg-fluid px-lg-5">
+            @include("components.top-video")
+        </div>
     </div>
 @endsection
