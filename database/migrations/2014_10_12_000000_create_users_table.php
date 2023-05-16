@@ -23,13 +23,7 @@ return new class extends Migration {
         });
     }
 
-    public function mgroup(): array
-    {
-        return [
-            0 => 'Nhập link cơ bản',
-            1 => ''
-        ];
-    }
+
 
     /**
      * Reverse the migrations.

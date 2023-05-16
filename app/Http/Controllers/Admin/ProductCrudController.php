@@ -30,6 +30,9 @@ class ProductCrudController extends CrudController
         CRUD::setModel(\App\Models\Product::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/product');
         CRUD::setEntityNameStrings('product', 'products');
+        if (!permission("manager")) {
+            $this->crud->denyAccess(["list", "create", "update", "delete"]);
+        }
     }
 
     public function status(): array

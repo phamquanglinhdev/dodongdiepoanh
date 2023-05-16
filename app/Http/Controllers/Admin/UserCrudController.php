@@ -2,24 +2,22 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\CategoryRequest;
+use App\Http\Requests\UserRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
-use Backpack\CRUD\app\Http\Controllers\Operations\ReorderOperation;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 
 /**
- * Class CategoryCrudController
+ * Class UserCrudController
  * @package App\Http\Controllers\Admin
  * @property-read \Backpack\CRUD\app\Library\CrudPanel\CrudPanel $crud
  */
-class CategoryCrudController extends CrudController
+class UserCrudController extends CrudController
 {
     use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
-    use ReorderOperation;
 
     /**
      * Configure the CrudPanel object. Apply settings to all operations.
@@ -28,17 +26,22 @@ class CategoryCrudController extends CrudController
      */
     public function setup()
     {
-        CRUD::setModel(\App\Models\Category::class);
-        CRUD::setRoute(config('backpack.base.route_prefix') . '/category');
-        CRUD::setEntityNameStrings('Danh mục', 'DS Danh mục');
-        if (!permission("manager")) {
+        CRUD::setModel(\App\Models\User::class);
+        CRUD::setRoute(config('backpack.base.route_prefix') . '/user');
+        CRUD::setEntityNameStrings('user', 'users');
+        if (!permission("admin")) {
             $this->crud->denyAccess(["list", "create", "update", "delete"]);
         }
     }
 
-    protected function setupReorderOperation(): void
+    public function roles(): array
     {
-        $this->crud->set('reorder.label', 'name');
+        return [
+            "admin" => 'Quản trị viên',
+            "manager" => 'Biên tập viên',
+            "author" => "Người đăng bài",
+            "collaborators" => "Cộng tác viên"
+        ];
     }
 
     /**
@@ -49,8 +52,10 @@ class CategoryCrudController extends CrudController
      */
     protected function setupListOperation(): void
     {
-        CRUD::column('name');
-        CRUD::column('parent_id');
+        CRUD::column('name')->label("Họ và tên");
+        CRUD::column('email')->label("Email");
+        CRUD::column('avatar')->label("Ảnh đại diện")->type("image");
+        CRUD::column('roles')->label("Phân quyền")->type("select_from_array")->options($this->roles());
 
         /**
          * Columns can be defined using the fluent syntax or array syntax:
@@ -65,19 +70,14 @@ class CategoryCrudController extends CrudController
      * @see https://backpackforlaravel.com/docs/crud-operation-create
      * @return void
      */
-    protected function setupCreateOperation(): void
+    protected function setupCreateOperation()
     {
-        CRUD::setValidation(CategoryRequest::class);
-
-        CRUD::field('name');
-        CRUD::addField([
-            'name' => 'parent_id',
-            'type' => 'select2_nested',
-            'model' => 'App\Models\Category',
-            'entity' => 'parent',
-            'attribute' => 'name',
-            'default' => 1,
-        ]);
+        CRUD::setValidation(UserRequest::class);
+        CRUD::field('name')->label("Họ và tên");
+        CRUD::field('email')->label("Email");
+        CRUD::field('avatar')->label("Ảnh đại diện")->type("browse");
+        CRUD::field('roles')->label("Phân quyền")->type("select2_from_array")->options($this->roles());
+        CRUD::field('password')->label("Mật khẩu");
 
         /**
          * Fields can be defined using the fluent syntax or array syntax:

@@ -1,4 +1,10 @@
-<!-- Footer -->
+@php
+    use App\ViewModels\Footer\FooterViewModel;
+    /**
+    * @var FooterViewModel $footerViewModel
+    */
+@endphp
+    <!-- Footer -->
 <footer class="text-center text-lg-start bg-main text-white">
     <section class="px-5 pt-5">
         <div class="container-fluid text-center text-md-start mt-5">
@@ -26,15 +32,11 @@
                     <h6 class="text-uppercase fw-bold mb-4">
                         Về chúng tôi
                     </h6>
-                    <p>
-                        <a href="#!" class="text-reset">Thông tin liên hệ</a>
-                    </p>
-                    <p>
-                        <a href="#!" class="text-reset">Cam kết chất lượng</a>
-                    </p>
-                    <p>
-                        <a href="#!" class="text-reset">Lời giới thiệu</a>
-                    </p>
+                    @foreach($footerViewModel->getAboutMe() as $about_me)
+                        <p>
+                            <a href="{{url("trang/".$about_me->getUrl())}}" class="text-reset">{{$about_me->getTitle()}}</a>
+                        </p>
+                    @endforeach
                 </div>
                 <!-- Grid column -->
                 <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
@@ -42,21 +44,11 @@
                     <h6 class="text-uppercase fw-bold mb-4">
                         Điều khoản
                     </h6>
-                    <p>
-                        <a href="#!" class="text-reset">Chính sách bảo mật</a>
-                    </p>
-                    <p>
-                        <a href="#!" class="text-reset">Chính sách mua hàng</a>
-                    </p>
-                    <p>
-                        <a href="#!" class="text-reset">Chính sách thanh toán</a>
-                    </p>
-                    <p>
-                        <a href="#!" class="text-reset">Chính sách bảo hành</a>
-                    </p>
-                    <p>
-                        <a href="#!" class="text-reset">Chính sách giao hàng</a>
-                    </p>
+                    @foreach($footerViewModel->getRules() as $rules)
+                        <p>
+                            <a href="{{url("trang/".$rules->getUrl())}}" class="text-reset">{{$rules->getTitle()}}</a>
+                        </p>
+                    @endforeach
                 </div>
                 <!-- Grid column -->
 

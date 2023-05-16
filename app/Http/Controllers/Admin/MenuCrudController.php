@@ -32,6 +32,9 @@ class MenuCrudController extends CrudController
         CRUD::setModel(\App\Models\Menu::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/menu');
         CRUD::setEntityNameStrings('Menu chính', 'Menu chính');
+        if (!permission("admin")) {
+            $this->crud->denyAccess(["list", "create", "update", "delete"]);
+        }
     }
 
     protected function setupReorderOperation(): void

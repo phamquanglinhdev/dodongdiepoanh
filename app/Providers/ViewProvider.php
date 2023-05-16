@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Composers\FooterComposer;
 use App\Composers\TopNewComposer;
 use App\Composers\TopViewHomeComposer;
 use App\Models\Category;
@@ -58,5 +59,6 @@ class ViewProvider extends ServiceProvider
         });
         View::composer("components.top-news-2", TopNewComposer::class);
         View::composer("components.top-news", TopViewHomeComposer::class);
+        View::composer("sites.inc.footer", FooterComposer::class);
     }
 }
