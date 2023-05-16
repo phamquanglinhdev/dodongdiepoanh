@@ -1,3 +1,10 @@
+@php
+    use App\ViewModels\News\NewsEditViewModel;
+    /**
+    * @var NewsEditViewModel $newsEditViewModel
+    */
+    $old=$newsEditViewModel->getNews();
+@endphp
 @extends(backpack_view("blank"))
 @section("after_styles")
     <style>
@@ -24,24 +31,26 @@
 @endsection
 @section('content')
     <div class="container-fluid">
-        <form action="{{route("news.store")}}" method="POST" enctype="multipart/form-data">
+        <form action="{{route("news.update",$old->getId())}}" method="POST" enctype="multipart/form-data">
+            @method("PUT")
             @csrf
             <div class="row bg-white my-1 p-2 justify-content-end">
                 <button class="btn btn-success">
-                    <i class="las la-save"></i>Đăng bài viết
+                    <i class="las la-save"></i>Cập nhật bài viết
                 </button>
             </div>
             <div class="row bg-white mb-5">
                 <div class="col-lg-9 col-12 py-3">
                     <div class="form-group">
                         <label for="title">Loại tin tức</label>
-                        <input class="form-control border" name="title" placeholder="Tiêu đề">
+                        <input class="form-control border" value="{{$old->getTitle()}}" name="title"
+                               placeholder="Tiêu đề">
                         @error("title")
                         <small class="text-danger">{{$message}}</small>
                         @enderror
                     </div>
                     <div id="editor">
-
+                        {!! $old->getBody() !!}
                     </div>
                     <input hidden value="" name="body" id="body">
                 </div>
@@ -50,18 +59,20 @@
                         <div class="form-group">
                             <label for="type_id">Loại tin tức</label>
                             <select class="form-control" name="type_id" id="type_id">
-                                <option value="0">Tin tức thường</option>
-                                <option value="1">Tin tức doanh nghiệp</option>
+                                <option value="0" {{$old->getTypeId()==0?"selected":""}}>Tin tức thường</option>
+                                <option value="1" {{$old->getTypeId()==1?"selected":""}}>Tin tức doanh nghiệp</option>
                             </select>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="draft" value="" id="draft">
+                            <input class="form-check-input" type="checkbox" name="draft"
+                                   id="draft" {{$old->getDraft()==1?"checked":""}}>
                             <label class="form-check-label text-danger" for="draft">
                                 Đăng dưới dạng bản nháp
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="pin" id="pin">
+                            <input class="form-check-input" type="checkbox" name="pin"
+                                   id="pin" {{$old->getPin()==1?"checked":""}}>
                             <label class="form-check-label" for="pin">
                                 Ghim lên đầu chuyên mục
                             </label>
@@ -70,16 +81,19 @@
                             <label>Ảnh bìa bài viết</label>
                             <div class="border rounded" id="img_preview_change">
                                 <img class="w-100" id="img_preview"
-                                     src="{{asset("img/upload_blank.png")}}">
+                                     src="{{url($old->getThumbnail())}}">
                             </div>
+                            <input type="file" hidden="" value="{{$old->getThumbnail()}}" id="thumbnail_file"
+                                   name="thumbnail">
                         </div>
                         <div class="my-2">
                             <div class="form-group">
                                 <label>Tóm tắt</label>
-                                <textarea rows="5" class="form-control" name="description"></textarea>
+                                <textarea rows="5" class="form-control"
+                                          name="description">{{$old->getDescription()}}</textarea>
                             </div>
                         </div>
-                        <input type="file" hidden="" id="thumbnail_file" name="thumbnail">
+
                     </div>
                 </div>
             </div>

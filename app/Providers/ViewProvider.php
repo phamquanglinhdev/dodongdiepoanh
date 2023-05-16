@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Composers\TopNewComposer;
+use App\Composers\TopViewHomeComposer;
 use App\Models\Category;
 use App\Models\Menu;
 use App\Models\Product;
@@ -10,6 +12,7 @@ use App\Repositories\MenuRepository;
 use App\Repositories\ProductRepository;
 use App\ViewModels\Category\RightBarViewModel;
 use App\ViewModels\Menu\MenuViewModel;
+use App\ViewModels\News\TopNewHomeViewModel;
 use App\ViewModels\Product\TopProductViewModel;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\View;
@@ -53,5 +56,7 @@ class ViewProvider extends ServiceProvider
             $topProduct["sản phẩm nổi bật"] = $this->productRepository->getListProductsOrderByView();
             return $view->with("topProductViewModel", new TopProductViewModel(topProductsObjects: Collection::make($topProduct)));
         });
+        View::composer("components.top-news-2", TopNewComposer::class);
+        View::composer("components.top-news", TopViewHomeComposer::class);
     }
 }

@@ -3,8 +3,15 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\NewsRequest;
+use App\Models\News;
+use App\Repositories\NewsRepository;
+use App\ViewModels\News\NewsEditViewModel;
+use App\ViewModels\News\Object\NewsStoreObject;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+use Illuminate\Http\UploadedFile;
 use Illuminate\View\View;
 
 /**
@@ -14,6 +21,7 @@ use Illuminate\View\View;
  */
 class NewsCrudController extends CrudController
 {
+
     use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
@@ -25,14 +33,16 @@ class NewsCrudController extends CrudController
      *
      * @return void
      */
-    public function setup()
+    public
+    function setup()
     {
         CRUD::setModel(\App\Models\News::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/news');
         CRUD::setEntityNameStrings('Tin tức', 'news');
     }
 
-    public function status(): array
+    public
+    function status(): array
     {
         return [
             0 => 'Đang chờ',
@@ -41,7 +51,8 @@ class NewsCrudController extends CrudController
         ];
     }
 
-    public function type(): array
+    public
+    function type(): array
     {
         return [
             0 => 'Tin tức thường',
@@ -55,11 +66,13 @@ class NewsCrudController extends CrudController
      * @see  https://backpackforlaravel.com/docs/crud-operation-list-entries
      * @return void
      */
-    protected function setupListOperation(): void
+    protected
+    function setupListOperation(): void
     {
         CRUD::column('title')->label("Tiêu đề");
         CRUD::column('created_at')->label("Thời gian tạo");
         CRUD::column('updated_at')->label("Chỉnh sửa lần cuối");
+        CRUD::column('pin')->label("Ghim")->type('check');
         CRUD::column('draft')->label("Bản nháp")->type('check');
         CRUD::column('status')->label("Trạng thái")->options($this->status())->type("select_from_array");
         CRUD::column('thumbnail')->label("Ảnh bìa")->type('image');
@@ -79,7 +92,8 @@ class NewsCrudController extends CrudController
      * @see https://backpackforlaravel.com/docs/crud-operation-create
      * @return void
      */
-    protected function setupCreateOperation(): void
+    protected
+    function setupCreateOperation(): void
     {
         CRUD::setValidation(NewsRequest::class);
 
@@ -105,15 +119,73 @@ class NewsCrudController extends CrudController
      * @see https://backpackforlaravel.com/docs/crud-operation-update
      * @return void
      */
-    protected function setupUpdateOperation(): void
+    protected
+    function setupUpdateOperation(): void
     {
         $this->setupCreateOperation();
     }
 
-    public function create(): View
+    public
+    function create(): View
     {
         return \view("vendor.backpack.add_post", [
             'postAddViewModel' => null
         ]);
+    }
+
+    public function edit($id, NewsRepository $newsRepository): View
+    {
+        return \view("vendor.backpack.edit_post", [
+            'newsEditViewModel' => new NewsEditViewModel(news: $newsRepository->getNewById($id))
+        ]);
+    }
+
+    public
+    function store(NewsRequest $request, NewsRepository $newsRepository): RedirectResponse
+    {
+
+        $collection = $request->except("_token");
+        $newStoreObject = new NewsStoreObject(
+            title: $collection["title"],
+            body: $collection["body"],
+            type_id: $collection["type_id"] ?? 0,
+            draft: isset($collection["draft"]) ? 1 : 0,
+            pin: isset($collection['pin']) ? 1 : 0,
+            thumbnail: $collection['thumbnail'],
+            description: $collection["description"]
+        );
+        /**
+         * @var News $newsModel
+         */
+        $newsModel = $newsRepository->create($newStoreObject->toArray());
+        if ($collection["thumbnail"] instanceof UploadedFile) {
+            $newsModel->thumbnail = $newsRepository->uploadThumbnail($collection["thumbnail"]);
+            $newsModel->save();
+        }
+        return redirect("admin/news");
+    }
+
+    public function update(Request $request, NewsRepository $newsRepository, int $id): RedirectResponse
+    {
+
+        /**
+         * @var News $newsModel
+         */
+        $newsModel = $newsRepository->getNewById($id);
+
+        $newUpdateObject = $request->except("_token", "_method");
+        $newsModel->title = $newUpdateObject["title"] ?? $newsModel->title;
+        $newsModel->body = $newUpdateObject["body"] ?? $newsModel->body;
+        $newsModel->pin = isset($newUpdateObject["pin"]) ? 1 : 0;
+        $newsModel->draft = isset($newUpdateObject["draft"]) ? 1 : 0;
+        $newsModel->type_id = $newUpdateObject["type_id"] ?? $newsModel->type_id;
+        $newsModel->description = $newUpdateObject["description"] ?? $newsModel->description;
+        if (isset($newUpdateObject["thumbnail"])) {
+            if ($newUpdateObject["thumbnail"] instanceof UploadedFile) {
+                $newsModel->thumbnail = $newsRepository->uploadThumbnail($newUpdateObject["thumbnail"]);
+            }
+        }
+        $newsModel->save();
+        return redirect("admin/news");
     }
 }

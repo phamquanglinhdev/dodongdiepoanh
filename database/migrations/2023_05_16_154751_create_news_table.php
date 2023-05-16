@@ -18,6 +18,7 @@ return new class extends Migration {
             $table->longText("body")->nullable();
             $table->longText("body_2")->nullable();
             $table->unsignedBigInteger("type_id");
+            $table->integer("pin");
             $table->string("thumbnail");
             $table->integer("draft")->default(0);
             $table->integer("status")->default(1);
