@@ -121,6 +121,7 @@
                     <form action="#" method="POST">
                         <div class="font-weight-bold my-2">Nhúng bản đồ</div>
                         <input class="form-control my-2" id="map_code" placeholder="Mã nhúng">
+                        <input class="form-control my-2" name="map_code" id="map_code_src" hidden>
                         <div class="rounded border embed-responsive embed-responsive-16by9">
                             <iframe
                                 id="preview_map_code"
@@ -187,8 +188,8 @@
         $("#map_code").keyup(function (e) {
             const map_code = e.target.value
             const source = $(map_code).attr("src")
-            $("#preview_map_code").attr("src",source)
-            console.log(source)
+            $("#preview_map_code").attr("src", source)
+            $("#map_code_src").val(source)
         })
     </script>
 @endsection
