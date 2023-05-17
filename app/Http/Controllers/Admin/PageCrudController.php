@@ -110,7 +110,7 @@ class PageCrudController extends CrudController
         $about_me = $areaRepository->getAboutMeArea();
         $rules = $areaRepository->getRulesArea();
         return \view("vendor.backpack.page_area", [
-            'pageAreaViewModel' => new PageAreaViewModel(pages: $pagesCollection, about_me: $about_me,rules:$rules)
+            'pageAreaViewModel' => new PageAreaViewModel(pages: $pagesCollection, about_me: $about_me, rules: $rules)
         ]);
     }
 
@@ -124,5 +124,22 @@ class PageCrudController extends CrudController
             $areaRepository->pushPage(["title" => $pageModel["title"], "locate" => $locate, "url" => $pageModel["slug"]]);
         }
         return redirect("admin/page/area");
+    }
+
+    public function orderArea(Request $request, AreaRepository $areaRepository): bool
+    {
+        $areaObject = $request->except("_token");
+        foreach ($areaObject as $key => $item) {
+            $areaRepository->getBuilder()->where("id", $item)->update(['order' => $key]);
+        }
+        return true;
+    }
+
+    public function removeArea(Request $request, AreaRepository $areaRepository): string
+    {
+        $id = $request->id ?? -1;
+        $id = str_replace("area_", "", $id);
+        $areaModel = $areaRepository->getBuilder()->where("id", $id)->delete();
+        return "$id";
     }
 }

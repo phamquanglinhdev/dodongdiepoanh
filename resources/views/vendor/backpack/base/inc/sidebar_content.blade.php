@@ -24,4 +24,10 @@
             dùng</a></li>
 @endif
 
-<li class="nav-item"><a class="nav-link" href="{{ backpack_url('page') }}"><i class="nav-icon la la-pager"></i> Trang</a></li>
+@if(permission("manager"))
+    <li class="nav-item"><a class="nav-link" href="{{ backpack_url('page') }}"><i class="nav-icon la la-pager"></i>
+            Trang</a></li>
+    <li class="nav-item"><a class="nav-link" href="{{ backpack_url('page/area') }}"><i class="nav-icon la la-arrows-alt"></i>
+            Vị
+            trí widget</a></li>
+@endif

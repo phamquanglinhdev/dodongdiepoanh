@@ -25,4 +25,6 @@ Route::group([
     Route::crud('page', 'PageCrudController');
     Route::get("/page/area", [PageCrudController::class, "area"])->name("page.area");
     Route::post("/page/area", [PageCrudController::class, "pushArea"])->name("page.area.push");
+    Route::post("/page/area/order", [PageCrudController::class, "orderArea"])->name("page.area.order");
+    Route::post("/page/area/remove", [PageCrudController::class, "removeArea"])->name("page.area.remove");
 }); // this should be the absolute last line of this file
