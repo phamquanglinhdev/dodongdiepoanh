@@ -17,6 +17,10 @@
             padding: 0;
             width: 100%;
         }
+
+        .sortable li {
+            padding: 5px !important;
+        }
     </style>
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
 @endsection
@@ -61,9 +65,7 @@
                             <li id="{{$area->getId()}}"
                                 class="list-group-item w-100 d-flex justify-content-between align-items-center">
                                 <div class="d-flex align-items-center">
-                                    <div class="p-2">
-                                        <i class="p-1 las la-arrows-alt"></i>
-                                    </div>
+                                    <i class="p-1 las la-arrows-alt"></i>
                                     <div>
                                         <span class="font-weight-bold">{{$area->getTitle()}}</span>
                                         <small class="font-italic">{{$area->getSlug()}}</small>
@@ -86,9 +88,7 @@
                             <li id="{{$area->getId()}}"
                                 class="list-group-item w-100 d-flex justify-content-between align-items-center">
                                 <div class="d-flex align-items-center">
-                                    <div class="p-2">
-                                        <i class="p-1 las la-arrows-alt"></i>
-                                    </div>
+                                    <i class="p-1 las la-arrows-alt"></i>
                                     <div>
                                         <span class="font-weight-bold">{{$area->getTitle()}}</span>
                                         <small class="font-italic">{{$area->getSlug()}}</small>
@@ -101,6 +101,35 @@
                             </li>
                         @endforeach
                     </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid my-5">
+
+        <div class="row  h-100">
+            <div class="col-md-6 h-100">
+                <div class="p-2 bg-white rounded  h-100">
+                    <form action="#" method="POST">
+                        <div class="font-weight-bold my-2">Nội dung chân trang</div>
+                        <div id="footer_description"></div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-6 h-100">
+                <div class="p-2 bg-white rounded h-100">
+                    <form action="#" method="POST">
+                        <div class="font-weight-bold my-2">Nhúng bản đồ</div>
+                        <input class="form-control my-2" id="map_code" placeholder="Mã nhúng">
+                        <div class="rounded border embed-responsive embed-responsive-16by9">
+                            <iframe
+                                id="preview_map_code"
+                                class="embed-responsive-item"
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3725.1637168548546!2d105.88541947593966!3d20.986073489242074!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135aebcaf395211%3A0x76fb5f949904beeb!2zNTYgUC4gTmFtIETGsCwgTMSpbmggTmFtLCBIb8OgbmcgTWFpLCBIw6AgTuG7mWksIFZp4buHdCBOYW0!5e0!3m2!1svi!2s!4v1684344095220!5m2!1svi!2s"
+                                style="border:0;" allowfullscreen="" loading="lazy"
+                                referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -151,6 +180,15 @@
                     $("#" + data).remove()
                 }
             })
+        })
+    </script>
+    @include("sites.inc.ckeditor5",["id"=>"footer_description"])
+    <script>
+        $("#map_code").keyup(function (e) {
+            const map_code = e.target.value
+            const source = $(map_code).attr("src")
+            $("#preview_map_code").attr("src",source)
+            console.log(source)
         })
     </script>
 @endsection
