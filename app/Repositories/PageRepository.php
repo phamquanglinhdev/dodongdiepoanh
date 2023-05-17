@@ -23,4 +23,9 @@ class PageRepository extends BaseRepository
     {
         return $this->getBuilder()->query()->get();
     }
+
+    public function getPageBySlug($slug): Model|Builder
+    {
+        return $this->getBuilder()->where("slug", $slug)->firstOrFail();
+    }
 }

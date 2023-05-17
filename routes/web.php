@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Sites\HomeController;
 use App\Http\Controllers\Sites\NewsController;
+use App\Http\Controllers\Sites\PageController;
 use App\Http\Controllers\Sites\ProductController;
 use Illuminate\Support\Facades\Route;
 
@@ -22,5 +23,6 @@ Route::namespace("sites")->group(function () {
     Route::get("/danh-sach-san-pham/{category_id?}", [ProductController::class, "listProductAction", "category_id"])->name("products");
     Route::get("/tin-tuc/{news_type?}", [NewsController::class, "listNewsControllers", "news_type"])->name("news");
     Route::get("/chi-tiet-tin-tuc/{new_slug?}", [NewsController::class, "showNewsControllers", "slug"])->name("new");
+    Route::get("/trang/{slug?}", [PageController::class, "index", "slug"])->name("page");
 });
 
