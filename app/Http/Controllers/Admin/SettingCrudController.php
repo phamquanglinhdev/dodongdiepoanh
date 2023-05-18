@@ -59,10 +59,10 @@ class SettingCrudController extends CrudController
          */
     }
 
-    public function index(SettingRepository $settingRepository,CategoryRepository $categoryRepository): View
+    public function index(SettingRepository $settingRepository, CategoryRepository $categoryRepository): View
     {
         return view("vendor.backpack.setting", [
-            'settingViewModel' => new SettingViewModel($settingRepository->listAll(),$categoryRepository)
+            'settingViewModel' => new SettingViewModel($settingRepository->listAll(), $categoryRepository)
         ]);
     }
 
@@ -101,8 +101,8 @@ class SettingCrudController extends CrudController
 
     public function update(Request $request, SettingRepository $settingRepository)
     {
-        $settingCollection = $request->except("_token","_method");
-
+        $settingCollection = $request->except("_token", "_method");
+        $settingRepository->getBuilder()->where("name","pin_category_ids")->update(["value" => "[]"]);
         foreach ($settingCollection as $name => $value) {
             $settingRepository->getBuilder()->where("name", $name)->update(['value' => $value]);
         }
