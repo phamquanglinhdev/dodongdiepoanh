@@ -58,7 +58,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         ]);
         Setting::query()->create([
             'name' => 'pin_category_ids',
-            'value' => ["2"]
+            'value' => '["2"]'
         ]);
         Setting::query()->create([
             'name' => 'home_description',
