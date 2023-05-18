@@ -86,19 +86,23 @@
                     </div>
                     <div class="row mt-5">
                         <div class="col-md-6 col-12">
-                            <button class="w-100 btn bg-main text-white my-1 d-flex align-items-center justify-content-center">
+                            <button
+                                class="w-100 btn bg-main text-white my-1 d-flex align-items-center justify-content-center">
                                 <i class="fas fa-phone-volume fa-2x p-1"></i>
                                 <div>
-                                    <a class="text-center text-uppercase h5 text-white" href="tel:84949806083">0949 806 083</a>
+                                    <a class="text-center text-uppercase h5 text-white"
+                                       href="tel:{{str_replace(" ","",setting("business_phone"))}}">{{setting("business_phone")}}</a>
                                 </div>
                             </button>
                         </div>
                         <div class="col-md-6 col-12">
-                            <button class="w-100 btn bg-primary text-white my-1 d-flex align-items-center justify-content-center">
+                            <button
+                                class="w-100 btn bg-primary text-white my-1 d-flex align-items-center justify-content-center">
                                 <img alt="zalo-white" src="{{asset("img/zalo-white.png")}}" style="width: 2.5em"
                                      class="p-1">
                                 <div>
-                                    <a class="text-center text-uppercase h5 text-white" href="#">Đồ đồng Điệp Oanh</a>
+                                    <a class="text-center text-uppercase h5 text-white"
+                                       href="{{setting("zalo_page_message_code")}}">Đồ đồng Điệp Oanh</a>
                                 </div>
                             </button>
                         </div>

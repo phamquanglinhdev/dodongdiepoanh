@@ -17,12 +17,7 @@
                         <img alt="logo-white" src="{{asset("img/logo-white.png")}}" style="width: 2em">
                         <span>CÔNG TY TNHH MỘT THÀNH VIÊN ĐÚC ĐIỆP OANH</span>
                     </h6>
-                    <p>GPĐKKD: 600662679, cấp ngày 08/10/2009</p>
-                    <p>Nơi cấp: Sở KH và Đầu Tư tỉnh Nam Định</p>
-                    <p>Điện thoại : 0949.806.083</p>
-                    <p>Email : dodongdiepoanh@gmail.com</p>
-                    <p>Địa chỉ : KCN Trấn Lâm - Ý Yên - Nam Định</p>
-                    <p>Xưởng sản xuất: Khu A – Thị Trấn Lâm – Ý Yên – Nam Định</p>
+                    {!! setting("footer_description") !!}
                 </div>
                 <!-- Grid column -->
 
@@ -60,7 +55,7 @@
                     <div class="ratio-16x9 ratio">
                         <iframe
                             class="rounded"
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d59866.711782632345!2d105.94261534863283!3d20.31394330000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x313677b2397a258f%3A0x8e2e7cdbc3c3cfc6!2zQ3R5IHRuaGggbeG7mXQgdGjDoG5oIHZpw6puIMSRw7pjIMSRaeG7h3Agb2FuaA!5e0!3m2!1sen!2s!4v1684057947450!5m2!1sen!2s"
+                            src="{{setting("map_code")}}"
                             style="border:0;" loading="lazy"
                             referrerpolicy="no-referrer-when-downgrade">
                         </iframe>
