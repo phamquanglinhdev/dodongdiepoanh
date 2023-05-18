@@ -5,8 +5,8 @@
          */
 @endphp
 @if($category->getChildren()==[])
-    <a href="{{$category->getUrl()}}" class="p-4 text-reset d-flex  collapsed text-uppercase fw-bold align-items-center">
-        <i class="fas fa-dice-one"></i><span class="px-2"> {{$category->getTitle()}}</span>
+    <a href="{{$category->getUrl()}}" class="px-4 py-3 text-reset d-flex  collapsed text-uppercase fw-bold align-items-center">
+        <i class="fas fa-list"></i><span class="px-2"> {{$category->getTitle()}}</span>
     </a>
 @else
     <div class="accordion-item">
