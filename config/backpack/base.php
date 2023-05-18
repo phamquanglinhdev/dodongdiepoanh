@@ -60,7 +60,7 @@ return [
         // Load the fonts separately (so that you can replace them at will):
         'packages/source-sans-pro/source-sans-pro.css',
         'packages/line-awesome/css/line-awesome.min.css',
-
+        "css/admin.css"
         // Example (the fonts above, loaded from CDN instead)
         // 'https://maxcdn.icons8.com/fonts/line-awesome/1.1/css/line-awesome-font-awesome.min.css',
         // 'https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic',
@@ -72,6 +72,7 @@ return [
     // CSS files that are loaded in all pages, using Laravel's mix() helper
     'mix_styles' => [ // file_path => manifest_directory_path
         // 'css/app.css' => '',
+
     ],
 
     // CSS files that are loaded in all pages, using Laravel's @vite() helper
@@ -85,7 +86,7 @@ return [
     // ------
 
     // Menu logo. You can replace this with an <img> tag if you have a logo.
-    'project_logo' => '<b>Đồ đồng</b>Điệp Oanh',
+    'project_logo' => '<img class="w-100" src="' . asset("img/logo.png") . '"/>',
 
     // Show / hide breadcrumbs on admin panel pages.
     'breadcrumbs' => true,
@@ -143,7 +144,7 @@ return [
         // 'https://unpkg.com/@coreui/coreui@2.1.16/dist/js/coreui.min.js',
         // 'https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js',
         // 'https://unpkg.com/sweetalert/dist/sweetalert.min.js',
-        // 'https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js'
+
 
         // examples (VueJS or React)
         // 'https://unpkg.com/vue@2.4.4/dist/vue.min.js',
@@ -301,7 +302,7 @@ return [
 
     // Gravatar fallback options are 'identicon', 'monsterid', 'wavatar', 'retro', 'robohash', 'blank'
     // 'blank' will keep the generic image with the user first letter
-    'gravatar_fallback' => 'blank',
+    'gravatar_fallback' => 'retro',
 
     /*
     |--------------------------------------------------------------------------
