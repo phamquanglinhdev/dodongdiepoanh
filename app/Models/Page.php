@@ -6,6 +6,10 @@ use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @property string $title
+ * @property string $body
+ */
 class Page extends Model
 {
     use CrudTrait;

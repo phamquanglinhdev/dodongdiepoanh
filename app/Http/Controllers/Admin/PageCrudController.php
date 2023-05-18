@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\PageRequest;
+use App\Models\Page;
 use App\Repositories\AreaRepository;
 use App\Repositories\PageRepository;
 use App\ViewModels\Page\Object\PageStoreObject;
@@ -123,6 +124,9 @@ class PageCrudController extends CrudController
 
     public function update(Request $request, $id, PageRepository $pageRepository): RedirectResponse
     {
+        /**
+         * @var Page $page
+         */
         $collection = $request->except("_token", "_method");
         $page = $pageRepository->getById($id);
         $page->title = $collection['title'];
