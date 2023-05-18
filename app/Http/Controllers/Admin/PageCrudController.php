@@ -7,6 +7,7 @@ use App\Repositories\AreaRepository;
 use App\Repositories\PageRepository;
 use App\ViewModels\Page\Object\PageStoreObject;
 use App\ViewModels\Page\PageAreaViewModel;
+use App\ViewModels\Page\PageEditViewModel;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanel;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
@@ -99,6 +100,16 @@ class PageCrudController extends CrudController
         return view("vendor.backpack.page_add");
     }
 
+    public function edit($id, PageRepository $pageRepository): View
+    {
+        if (!permission("manager")) {
+            abort(403);
+        }
+        return view("vendor.backpack.page_edit", [
+            'pageEditViewModel' => new PageEditViewModel($pageRepository->getById($id))
+        ]);
+    }
+
     public function store(Request $request, PageRepository $pageRepository): RedirectResponse
     {
         if (!permission("manager")) {
@@ -107,6 +118,16 @@ class PageCrudController extends CrudController
         $attribute = $request->except("_token");
         $object = new PageStoreObject($attribute["title"], $attribute['body']);
         $pageRepository->createPage($object->toArray());
+        return redirect("/admin/page");
+    }
+
+    public function update(Request $request, $id, PageRepository $pageRepository): RedirectResponse
+    {
+        $collection = $request->except("_token", "_method");
+        $page = $pageRepository->getById($id);
+        $page->title = $collection['title'];
+        $page->body = $collection["body"] ?? $page->body;
+        $page->save();
         return redirect("/admin/page");
     }
 
