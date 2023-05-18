@@ -42,6 +42,11 @@ class NewsCrudController extends CrudController
         if (!permission("author")) {
             $this->crud->denyAccess(["list", "create", "update", "delete"]);
         }
+        if (backpack_auth()->check()) {
+            if (backpack_user()->roles == "author") {
+                $this->crud->query->where("author_id", backpack_user()->id);
+            }
+        }
     }
 
     public

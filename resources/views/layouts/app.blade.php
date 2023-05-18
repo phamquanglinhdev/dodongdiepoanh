@@ -38,5 +38,6 @@
 <!-- Custom scripts -->
 <script type="text/javascript"></script>
 @stack("page_js")
+@include("components.fix_right")
 </body>
 </html>
