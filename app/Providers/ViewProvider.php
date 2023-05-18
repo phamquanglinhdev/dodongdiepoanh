@@ -4,7 +4,9 @@ namespace App\Providers;
 
 use App\Composers\BannerHomeComposer;
 use App\Composers\FooterComposer;
+use App\Composers\RightBarComposer;
 use App\Composers\TopNewComposer;
+use App\Composers\TopProductComposer;
 use App\Composers\TopViewHomeComposer;
 use App\Models\Category;
 use App\Models\Menu;
@@ -48,16 +50,8 @@ class ViewProvider extends ServiceProvider
             $this->menuRepository = new MenuRepository(model: new Menu());
             return $view->with("menuViewModel", new MenuViewModel(menuObject: $this->menuRepository->getRecursiveMenuForSite()));
         });
-        View::composer("sites.inc.right-bar", function ($view) {
-            $this->categoryRepository = new CategoryRepository(model: new Category());
-            return $view->with("rightBarViewModel", new RightBarViewModel(categoryObject: $this->categoryRepository->getCategoryForRecursiveSideBar()));
-        });
-        View::composer("components.top-product", function ($view) {
-            $this->categoryRepository = new CategoryRepository(model: new Category());
-            $this->productRepository = new ProductRepository(model: new Product());
-            $topProduct["sản phẩm nổi bật"] = $this->productRepository->getListProductsOrderByView();
-            return $view->with("topProductViewModel", new TopProductViewModel(topProductsObjects: Collection::make($topProduct)));
-        });
+        View::composer("sites.inc.right-bar", RightBarComposer::class);
+        View::composer("components.top-product", TopProductComposer::class);
         View::composer("components.top-news-2", TopNewComposer::class);
         View::composer("components.top-news", TopViewHomeComposer::class);
         View::composer("sites.inc.footer", FooterComposer::class);
