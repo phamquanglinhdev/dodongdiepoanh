@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\PageCrudController;
+use App\Http\Controllers\Admin\SettingCrudController;
 use Illuminate\Support\Facades\Route;
 
 // --------------------------
@@ -28,5 +29,7 @@ Route::group([
     Route::post("/page/area/order", [PageCrudController::class, "orderArea"])->name("page.area.order");
     Route::post("/page/area/remove", [PageCrudController::class, "removeArea"])->name("page.area.remove");
     Route::crud('banner', 'BannerCrudController');
-    Route::crud('setting', 'SettingCrudController');
+//    Route::crud('setting', 'SettingCrudController');
+    Route::get('setting', [SettingCrudController::class,"index"])->name("setting.index");
+    Route::put('setting/updates', [SettingCrudController::class,"updates"])->name("setting.updates");
 }); // this should be the absolute last line of this file

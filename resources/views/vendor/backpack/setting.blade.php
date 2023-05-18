@@ -9,7 +9,9 @@
     $google_tag_manager = $settingViewModel->getProperty("google_tag_manager")->getValue();
     $google_tag_manager_noscript = $settingViewModel->getProperty("google_tag_manager_noscript")->getValue();
     $pin_category_ids = $settingViewModel->getProperty("pin_category_ids")->getValue();
-    $selected_category = $settingViewModel->getCategoryRepository()
+    $home_description = $settingViewModel->getProperty("home_description")->getValue();
+    $keywords = $settingViewModel->getProperty("keywords")->getValue();
+    $selected_category = $settingViewModel->getCategoryRepository();
 @endphp
 @extends(backpack_view("blank"))
 @section("after_styles")
@@ -28,10 +30,27 @@
         <div class="row">
             <div class="col-md-9 col-12 ">
                 <div class="bg-white p-2 rounded px-3 pb-5 border">
-                    <form action="{{route('setting.update',1)}}" method="POST" class="mt-2">
+                    <form action="{{route('setting.updates')}}" method="POST" class="mt-2">
                         @method("PUT")
                         @csrf
                         <div class="row">
+                            <div class="col-md-12 mb-3">
+                                <div class="form-group">
+                                    <label class="form-label font-weight-bold" for="facebook_page_message_code">Home
+                                        Description</label>
+                                    <input class="form-control" id="home_description" placeholder="home_description"
+                                           name="home_description"
+                                           value="{{$home_description}}">
+                                </div>
+                            </div>
+                            <div class="col-md-12 mb-3">
+                                <div class="form-group">
+                                    <label class="form-label font-weight-bold" for="keywords">Keywords</label>
+                                    <input class="form-control" id="keywords" placeholder="keywords"
+                                           name="keywords"
+                                           value="{{$keywords}}">
+                                </div>
+                            </div>
                             <div class="col-md-12 mb-3">
                                 <div class="form-group">
                                     <label class="form-label font-weight-bold" for="facebook_page_message_code">Link gửi

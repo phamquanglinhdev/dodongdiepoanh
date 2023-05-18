@@ -58,7 +58,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         ]);
         Setting::query()->create([
             'name' => 'pin_category_ids',
-            'value' => "[1,10]"
+            'value' => ["2"]
+        ]);
+        Setting::query()->create([
+            'name' => 'home_description',
+            'value' => 'Doanh nghiệp sản xuất và kinh doanh đồ đồng gia truyền tại Ý Yên Nam Định'
+        ]);
+        Setting::query()->create([
+            'name' => 'keywords',
+            'value' => 'dodong,ducdong,diepoanh'
         ]);
     }
 }

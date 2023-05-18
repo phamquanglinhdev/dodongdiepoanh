@@ -30,8 +30,9 @@
             Trang</a></li>
     <li class="nav-item"><a class="nav-link" href="{{ backpack_url('page/area') }}"><i class="nav-icon la la-external-link-square-alt"></i>
            Footer - Cuối trang</a></li>
+    <li class="nav-item"><a class="nav-link" href="{{ backpack_url('setting') }}"><i class="nav-icon la la-cog"></i> Cài đặt</a></li>
 @endif
 
 
 
-<li class="nav-item"><a class="nav-link" href="{{ backpack_url('setting') }}"><i class="nav-icon la la-question"></i> Settings</a></li>
+

@@ -73,6 +73,7 @@ class NewsCrudController extends CrudController
     function setupListOperation(): void
     {
         CRUD::column('title')->label("Tiêu đề");
+        CRUD::column('author')->label("Tác giả");
         CRUD::column('created_at')->label("Thời gian tạo");
         CRUD::column('updated_at')->label("Chỉnh sửa lần cuối");
         CRUD::column('pin')->label("Ghim")->type('check');
@@ -149,6 +150,7 @@ class NewsCrudController extends CrudController
 
         $collection = $request->except("_token");
         $newStoreObject = new NewsStoreObject(
+            author_id: backpack_user()->id,
             title: $collection["title"],
             body: $collection["body"],
             type_id: $collection["type_id"] ?? 0,

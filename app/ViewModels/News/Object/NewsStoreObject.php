@@ -8,6 +8,7 @@ use Illuminate\Support\Str;
 class NewsStoreObject
 {
     public function __construct(
+        readonly private string              $author_id,
         readonly private string              $title,
         readonly private string              $body,
         readonly private int                 $type_id,
@@ -20,6 +21,14 @@ class NewsStoreObject
     {
     }
 
+    /**
+     * @return string
+     */
+    public function getAuthorId(): string
+    {
+        return $this->author_id;
+    }
+
     public function toArray(): array
     {
         return [
@@ -30,7 +39,8 @@ class NewsStoreObject
             'pin' => $this->getPin() ?? 0,
             'thumbnail' => $this->getThumbnail(),
             'description' => $this->getDescription(),
-            'slug' => Str::slug($this->getTitle())
+            'slug' => Str::slug($this->getTitle()),
+            'author_id' => $this->getAuthorId(),
         ];
     }
 

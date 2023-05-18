@@ -93,11 +93,17 @@ class PageCrudController extends CrudController
 
     public function create(): View
     {
+        if (!permission("manager")) {
+            abort(403);
+        }
         return view("vendor.backpack.page_add");
     }
 
     public function store(Request $request, PageRepository $pageRepository): RedirectResponse
     {
+        if (!permission("manager")) {
+            abort(403);
+        }
         $attribute = $request->except("_token");
         $object = new PageStoreObject($attribute["title"], $attribute['body']);
         $pageRepository->createPage($object->toArray());
@@ -106,6 +112,9 @@ class PageCrudController extends CrudController
 
     public function area(PageRepository $pageRepository, AreaRepository $areaRepository): View
     {
+        if (!permission("manager")) {
+            abort(403);
+        }
         $pagesCollection = $pageRepository->getAllPages();
         $about_me = $areaRepository->getAboutMeArea();
         $rules = $areaRepository->getRulesArea();
@@ -116,6 +125,9 @@ class PageCrudController extends CrudController
 
     public function pushArea(Request $request, AreaRepository $areaRepository, PageRepository $pageRepository): RedirectResponse
     {
+        if (!permission("manager")) {
+            abort(403);
+        }
         $areasBags = $request->except("_token");
         $locate = $request["locate"];
         $pages = $request["page"];
@@ -128,6 +140,9 @@ class PageCrudController extends CrudController
 
     public function orderArea(Request $request, AreaRepository $areaRepository): bool
     {
+        if (!permission("manager")) {
+            abort(403);
+        }
         $areaObject = $request->except("_token");
         foreach ($areaObject as $key => $item) {
             $areaRepository->getBuilder()->where("id", $item)->update(['order' => $key]);
@@ -137,6 +152,9 @@ class PageCrudController extends CrudController
 
     public function removeArea(Request $request, AreaRepository $areaRepository): string
     {
+        if (!permission("manager")) {
+            abort(403);
+        }
         $id = $request->id ?? -1;
         $id = str_replace("area_", "", $id);
         $areaModel = $areaRepository->getBuilder()->where("id", $id)->delete();

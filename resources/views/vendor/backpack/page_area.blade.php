@@ -106,34 +106,42 @@
         </div>
     </div>
     <div class="container-fluid my-5">
+        <form action="{{route('setting.updates')}}" method="POST">
+            @method("PUT")
+            @csrf
+            <div class="row bg-white m-0 h-100">
 
-        <div class="row  h-100">
-            <div class="col-md-6 h-100">
-                <div class="p-2 bg-white rounded  h-100">
-                    <form action="#" method="POST">
+                <div class="col-md-6 h-100">
+                    <div class="p-2  rounded  h-100">
                         <div class="font-weight-bold my-2">Nội dung chân trang</div>
-                        <div id="footer_description"></div>
-                    </form>
+                        <div id="footer_description">{!! setting("footer_description") !!}</div>
+                        <input id="footer_description_body" name="footer_description"
+                               value="{!! setting("footer_description") !!}" hidden>
+                    </div>
                 </div>
-            </div>
-            <div class="col-md-6 h-100">
-                <div class="p-2 bg-white rounded h-100">
-                    <form action="#" method="POST">
+                <div class="col-md-6">
+                    <div class="p-2 bg-white rounded">
                         <div class="font-weight-bold my-2">Nhúng bản đồ</div>
                         <input class="form-control my-2" id="map_code" placeholder="Mã nhúng">
-                        <input class="form-control my-2" name="map_code" id="map_code_src" hidden>
+                        <input class="form-control my-2" value="{{setting("map_code")}}" name="map_code"
+                               id="map_code_src" hidden>
                         <div class="rounded border embed-responsive embed-responsive-16by9">
                             <iframe
                                 id="preview_map_code"
                                 class="embed-responsive-item"
-                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3725.1637168548546!2d105.88541947593966!3d20.986073489242074!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135aebcaf395211%3A0x76fb5f949904beeb!2zNTYgUC4gTmFtIETGsCwgTMSpbmggTmFtLCBIb8OgbmcgTWFpLCBIw6AgTuG7mWksIFZp4buHdCBOYW0!5e0!3m2!1svi!2s!4v1684344095220!5m2!1svi!2s"
+                                src="{{setting("map_code")}}"
                                 style="border:0;" allowfullscreen="" loading="lazy"
                                 referrerpolicy="no-referrer-when-downgrade"></iframe>
                         </div>
-                    </form>
+                    </div>
+                </div>
+                <div class="container-fluid text-center my-2">
+                    <button class="btn btn-success">
+                        <i class="las la-save"></i> Cập nhật
+                    </button>
                 </div>
             </div>
-        </div>
+        </form>
     </div>
 @endsection
 @section("after_scripts")

@@ -85,7 +85,7 @@
                 ],
             }).then(editor => {
             editor.model.document.on('change:data', (e) => {
-                $("#body").val(editor.getData())
+                $("#{{$id}}_body").val(editor.getData())
             });
         });
 

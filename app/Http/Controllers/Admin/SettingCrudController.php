@@ -8,6 +8,8 @@ use App\Repositories\SettingRepository;
 use App\ViewModels\Setting\SettingViewModel;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
+use Illuminate\Foundation\Application;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -43,7 +45,7 @@ class SettingCrudController extends CrudController
      * @see  https://backpackforlaravel.com/docs/crud-operation-list-entries
      * @return void
      */
-    protected function setupListOperation()
+    protected function setupListOperation(): void
     {
         CRUD::column('active');
         CRUD::column('created_at');
@@ -61,6 +63,9 @@ class SettingCrudController extends CrudController
 
     public function index(SettingRepository $settingRepository, CategoryRepository $categoryRepository): View
     {
+        if (!permission("manager")) {
+            abort(403);
+        }
         return view("vendor.backpack.setting", [
             'settingViewModel' => new SettingViewModel($settingRepository->listAll(), $categoryRepository)
         ]);
@@ -99,13 +104,17 @@ class SettingCrudController extends CrudController
         $this->setupCreateOperation();
     }
 
-    public function update(Request $request, SettingRepository $settingRepository)
+    public function updates(Request $request, SettingRepository $settingRepository): RedirectResponse
     {
+        if (!permission("manager")) {
+            abort(403);
+        }
         $settingCollection = $request->except("_token", "_method");
-        $settingRepository->getBuilder()->where("name","pin_category_ids")->update(["value" => "[]"]);
+
+        $settingRepository->getBuilder()->where("name", "pin_category_ids")->update(["value" => "[]"]);
         foreach ($settingCollection as $name => $value) {
             $settingRepository->getBuilder()->where("name", $name)->update(['value' => $value]);
         }
-        return redirect("admin/setting");
+        return redirect()->back()->with("success", "Thành công");
     }
 }
