@@ -37,6 +37,13 @@ class MenuRepository extends BaseRepository
                 $categoryRepository = new CategoryRepository(new Category());
                 return $categoryRepository->getCategoryForRecursive();
             }
+            if ($menu["mgroup"] == 2) {
+                return new MenuObject(
+                    title: $menu["title"],
+                    url: url("trang/gioi-thieu"),
+                    children: [],
+                );
+            }
             if ($menu["mgroup"] == 1) {
                 return new MenuObject(
                     title: $menu["title"],

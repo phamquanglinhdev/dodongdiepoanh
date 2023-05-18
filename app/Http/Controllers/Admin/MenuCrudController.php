@@ -97,11 +97,11 @@ class MenuCrudController extends CrudController
         ]);
         CRUD::field('title')->label("Tiêu đề");
         CRUD::field("mgroup")->label("Loại kiên kết")->type("select2_from_array")->options($this->mgroup());
-        CRUD::addField([
-            'name' => 'news_type',
-            'type' => 'select2_from_array',
-            'options' => $this->mgroup()
-        ]);
+//        CRUD::addField([
+//            'name' => 'news_type',
+//            'type' => 'select2_from_array',
+//            'options' => $this->mgroup()
+//        ]);
         CRUD::field('url');
 
         /**
