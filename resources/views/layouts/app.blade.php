@@ -9,7 +9,7 @@
     @stack("page_meta")
     <title>@yield("title")</title>
     <!-- MDB icon -->
-    <link rel="icon" href="" type="image/x-icon"/>
+    <link rel="icon" href="{{asset("img/icon.png")}}" type="image/x-icon" class="rounded-circle"/>
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
     />
