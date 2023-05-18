@@ -16,7 +16,7 @@ class NewsSeeder extends Seeder
     {
         News::query()->truncate();
         for ($i = 1; $i < 1000; $i++) {
-            $title = fake()->company();
+            $title = fake()->text(100);
             $news = array(
                 "title" => $title,
                 "slug" => Str::slug($title, "-"),

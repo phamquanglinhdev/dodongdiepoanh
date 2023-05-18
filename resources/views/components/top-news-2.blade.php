@@ -18,12 +18,12 @@
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-fullscreen">
             <div class="modal-content">
-                <div class="accordion accordion-borderless bg-white" id="categories-right-bar">
+                <div class="accordion accordion-borderless bg-white p-2" id="categories-right-bar">
                     <div class="row">
                         <div class="text-white bg-main p-3 d-flex justify-content-between align-items-center">
                             <div>TIN TỨC NỔI BẬT</div>
                             <span>
-                                 <a type="button" class="px-2 text-white" data-mdb-dismiss="modal">
+                                 <a type="button" class="px-3 text-white" data-mdb-dismiss="modal">
                                      <i class="fas fa-times"></i>
                                  </a>
                             </span>
@@ -32,11 +32,11 @@
                             @foreach($topNewsViewModel->getTrendingNews() as $news)
                                 <div class="mini-new py-2 border-bottom">
                                     <div class="">
-                                        <span>{{$news->getUpdatedAt()}}</span> -
+                                        <span class="fw-semibold">{{$news->getUpdatedAt()}}</span> -
                                         <span class="fw-bold text-main">{{$news->getType()}}</span>
                                     </div>
-                                    <a href="{{route('new',$news->getSlug())}}" class="text-reset fw-semibold">
-                                        <div>{{Str::limit($news->getTitle(),20)}}</div>
+                                    <a href="{{route('new',$news->getSlug())}}" class="text-reset fw-normal">
+                                        <div>{{Str::limit($news->getTitle())}}</div>
                                     </a>
                                 </div>
                             @endforeach
@@ -48,11 +48,11 @@
                             @foreach($topNewsViewModel->getRecentlyNews() as $news)
                                 <div class="mini-new py-2 border-bottom">
                                     <div class="">
-                                        <span>{{$news->getUpdatedAt()}}</span> -
+                                        <span class="fw-semibold">{{$news->getUpdatedAt()}}</span> -
                                         <span class="fw-bold text-main">{{$news->getType()}}</span>
                                     </div>
-                                    <a href="{{route('new',$news->getSlug())}}" class="text-reset fw-semibold">
-                                        <div>{{Str::limit($news->getTitle(),20)}}</div>
+                                    <a href="{{route('new',$news->getSlug())}}" class="text-reset fw-normal">
+                                        <div>{{Str::limit($news->getTitle())}}</div>
                                     </a>
                                 </div>
                             @endforeach
@@ -74,11 +74,11 @@
         @foreach($topNewsViewModel->getTrendingNews() as $news)
             <div class="mini-new py-2 border-bottom">
                 <div class="">
-                    <span>{{$news->getUpdatedAt()}}</span> -
+                    <span class="fw-semibold">{{$news->getUpdatedAt()}}</span> -
                     <span class="fw-bold text-main">{{$news->getType()}}</span>
                 </div>
-                <a href="{{route('new',$news->getSlug())}}" class="text-reset fw-semibold">
-                    <div>{{Str::limit($news->getTitle(),20)}}</div>
+                <a href="{{route('new',$news->getSlug())}}" class="text-reset fw-normal">
+                    <div>{{Str::limit($news->getTitle())}}</div>
                 </a>
             </div>
         @endforeach
@@ -90,11 +90,11 @@
         @foreach($topNewsViewModel->getRecentlyNews() as $news)
             <div class="mini-new py-2 border-bottom">
                 <div class="">
-                    <span>{{$news->getUpdatedAt()}}</span> -
+                    <span class="fw-semibold">{{$news->getUpdatedAt()}}</span> -
                     <span class="fw-bold text-main">{{$news->getType()}}</span>
                 </div>
-                <a href="{{route('new',$news->getSlug())}}" class="text-reset fw-semibold">
-                    <div>{{Str::limit($news->getTitle(),20)}}</div>
+                <a href="{{route('new',$news->getSlug())}}" class="text-reset fw-normal">
+                    <div>{{Str::limit($news->getTitle())}}</div>
                 </a>
             </div>
         @endforeach
