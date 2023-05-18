@@ -32,20 +32,22 @@
                 </div>
                 <div class="row">
                     @foreach($newsListViewModel->getNews() as $news)
-                        <div class="col-lg-3 col-md-6 col-12">
-                            <div class="card">
+                        <div class="col-lg-3 col-md-6 col-12 mb-4">
+                            <div class="card border">
                                 <div class="ratio ratio-16x9">
                                     <img src="{{url($news->getThumbnail())}}"
                                          class="card-img-top"
                                          alt="thumbnail"/>
                                 </div>
                                 <div class="card-body">
-                                    <h5 class="card-title">{{Str::limit($news->getTitle(),30)}}</h5>
+                                    <div class="card-title fw-bold text-main">{{Str::limit($news->getTitle(),60)}}</div>
                                     <p class="card-text">
                                         {{Str::limit($news->getDescription(),100)}}
                                     </p>
-                                    <a href="{{route("new",$news->getSlug())}}" class="btn btn-secondary w-100">Xem chi
-                                        tiết</a>
+                                    <div class="text-center">
+                                        <a href="{{route("new",$news->getSlug())}}" class="text-main w-100">Xem chi
+                                            tiết</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
