@@ -110,7 +110,7 @@ class SettingCrudController extends CrudController
             abort(403);
         }
         $settingCollection = $request->except("_token", "_method");
-
+        dd($settingCollection);
         $settingRepository->getBuilder()->where("name", "pin_category_ids")->update(["value" => "[]"]);
         foreach ($settingCollection as $name => $value) {
             $settingRepository->getBuilder()->where("name", $name)->update(['value' => $value]);

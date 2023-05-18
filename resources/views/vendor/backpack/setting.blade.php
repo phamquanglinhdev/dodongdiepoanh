@@ -83,7 +83,7 @@
                                     <label for="google_tag_manager" class="form-label font-weight-bold">Google Tag
                                         Manager (1)</label>
                                     <textarea class="form-control" rows="8" name="google_tag_manager"
-                                              id="google_tag_manager">{{$google_tag_manager}}}</textarea>
+                                              id="google_tag_manager">{{$google_tag_manager}}</textarea>
                                 </div>
                             </div>
                             <div class="col-md-12 mb-3">
@@ -91,7 +91,7 @@
                                     <label for="google_tag_manager_noscript" class="form-label font-weight-bold">Google
                                         Tag Manager (2)</label>
                                     <textarea class="form-control" rows="5" name="google_tag_manager_noscript"
-                                              id="google_tag_manager_noscript">{{$google_tag_manager_noscript}}}</textarea>
+                                              id="google_tag_manager_noscript">{{$google_tag_manager_noscript}}</textarea>
                                 </div>
                             </div>
                             <div class="col-md-12 mb-3">
