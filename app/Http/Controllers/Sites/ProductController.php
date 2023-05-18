@@ -21,7 +21,10 @@ class ProductController extends Controller
 
     public function showProductAction($id): View
     {
-        $productShowViewModel = new ProductShowViewModel(product: $this->productRepository->getProductById($id));
+        $product = $this->productRepository->getProductById($id);
+        $product->view+=1;
+        $product->save();
+        $productShowViewModel = new ProductShowViewModel(product:$product );
         return view("sites.product", [
             'productShowViewModel' => $productShowViewModel
         ]);

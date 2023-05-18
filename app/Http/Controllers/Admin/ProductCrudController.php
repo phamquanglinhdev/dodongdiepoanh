@@ -90,6 +90,7 @@ class ProductCrudController extends CrudController
         ]);
         CRUD::field('size')->label("Kích thước");
         CRUD::field('material')->label("Chất liệu");
+        CRUD::field('description')->label("Giới thiệu")->type("textarea");
         CRUD::field('status')->type("select_from_array")->options($this->status());
         CRUD::field('thumbnail_1')->type("browse")->label("Ảnh 1");
         CRUD::field('thumbnail_2')->type("browse")->label("Ảnh 2");
