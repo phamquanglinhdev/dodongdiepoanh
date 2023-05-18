@@ -23,7 +23,8 @@ class TopNewsViewModel
         return $this->trendingNews->map(fn(News $news) => new TopNewsObject(
             title: $news["title"],
             slug: $news["slug"],
-            type: $news["type_id"]==0?"Tin tức thường":"Tin tức doanh nghiệp"
+            type: $news["type_id"] == 0 ? "Tin tức thường" : "Tin tức doanh nghiệp",
+            updated_at: $news['updated_at']
         ))->toArray();
     }
 
@@ -35,7 +36,7 @@ class TopNewsViewModel
         return $this->recentlyNews->map(fn(News $news) => new TopNewsObject(
             title: $news["title"],
             slug: $news["slug"],
-            type: $news["type_id"]==0?"Tin tức thường":"Tin tức doanh nghiệp"
+            type: $news["type_id"] == 0 ? "Tin tức thường" : "Tin tức doanh nghiệp", updated_at: $news["updated_at"]
         ))->toArray();
     }
 }

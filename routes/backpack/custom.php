@@ -27,4 +27,5 @@ Route::group([
     Route::post("/page/area", [PageCrudController::class, "pushArea"])->name("page.area.push");
     Route::post("/page/area/order", [PageCrudController::class, "orderArea"])->name("page.area.order");
     Route::post("/page/area/remove", [PageCrudController::class, "removeArea"])->name("page.area.remove");
+    Route::crud('banner', 'BannerCrudController');
 }); // this should be the absolute last line of this file

@@ -18,9 +18,12 @@
             </div>
             <hr>
             @foreach($topNewHomeViewModel->getNormalNews() as $news)
-                <div class="new">
-                    <a href="{{route("new",$news->getSlug())}}" class="text-reset">
-                        <i class="far fa-file-alt px-1"></i>
+                <div class="new border-bottom mb-2">
+                    <div>
+                        <span class="fw-light">{{$news->getUpdatedAt()}}</span> -
+                        <span class="text-main fw-bold">{{$news->getType()}}</span>
+                    </div>
+                    <a href="{{route("new",$news->getSlug())}}" class="text-reset fw-semibold">
                         <span>{{$news->getTitle()}}</span>
                     </a>
                 </div>
@@ -36,9 +39,12 @@
             </div>
             <hr>
             @foreach($topNewHomeViewModel->getBusinessNews() as $news)
-                <div class="new">
-                    <a href="{{route("new",$news->getSlug())}}" class="text-reset">
-                        <i class="far fa-file-alt px-1"></i>
+                <div class="new border-bottom mb-2">
+                    <div>
+                        <span class="fw-light">{{$news->getUpdatedAt()}}</span> -
+                        <span class="text-main fw-bold">{{$news->getType()}}</span>
+                    </div>
+                    <a href="{{route("new",$news->getSlug())}}" class="text-reset fw-semibold">
                         <span>{{$news->getTitle()}}</span>
                     </a>
                 </div>

@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\UserRequest;
+use App\Http\Requests\BannerRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 
 /**
- * Class UserCrudController
+ * Class BannerCrudController
  * @package App\Http\Controllers\Admin
  * @property-read \Backpack\CRUD\app\Library\CrudPanel\CrudPanel $crud
  */
-class UserCrudController extends CrudController
+class BannerCrudController extends CrudController
 {
     use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
@@ -26,21 +26,17 @@ class UserCrudController extends CrudController
      */
     public function setup()
     {
-        CRUD::setModel(\App\Models\User::class);
-        CRUD::setRoute(config('backpack.base.route_prefix') . '/user');
-        CRUD::setEntityNameStrings('Người dùng', 'Danh sách người dùng');
-        if (!permission("admin")) {
-            $this->crud->denyAccess(["list", "create", "update", "delete"]);
-        }
+        CRUD::setModel(\App\Models\Banner::class);
+        CRUD::setRoute(config('backpack.base.route_prefix') . '/banner');
+        CRUD::setEntityNameStrings('banner', 'Danh sách banner');
     }
 
-    public function roles(): array
+    public function position(): array
     {
         return [
-            "admin" => 'Quản trị viên',
-            "manager" => 'Biên tập viên',
-            "author" => "Người đăng bài",
-            "collaborators" => "Cộng tác viên"
+            'index' => 'Banner trang chủ,slider',
+            'left_bar' => 'Banner bên trái',
+            'bottom' => 'Banner dưới'
         ];
     }
 
@@ -52,10 +48,9 @@ class UserCrudController extends CrudController
      */
     protected function setupListOperation(): void
     {
-        CRUD::column('name')->label("Họ và tên");
-        CRUD::column('email')->label("Email");
-        CRUD::column('avatar')->label("Ảnh đại diện")->type("image");
-        CRUD::column('roles')->label("Phân quyền")->type("select_from_array")->options($this->roles());
+        CRUD::column('name')->label("Tên banner");
+        CRUD::column('image')->label("Ảnh banner")->type("image");
+        CRUD::column('url')->label("Click Url");
 
         /**
          * Columns can be defined using the fluent syntax or array syntax:
@@ -70,14 +65,17 @@ class UserCrudController extends CrudController
      * @see https://backpackforlaravel.com/docs/crud-operation-create
      * @return void
      */
-    protected function setupCreateOperation()
+    protected function setupCreateOperation(): void
     {
-        CRUD::setValidation(UserRequest::class);
-        CRUD::field('name')->label("Họ và tên");
-        CRUD::field('email')->label("Email");
-        CRUD::field('avatar')->label("Ảnh đại diện")->type("browse");
-        CRUD::field('roles')->label("Phân quyền")->type("select2_from_array")->options($this->roles());
-        CRUD::field('password')->label("Mật khẩu");
+        CRUD::setValidation(BannerRequest::class);
+
+        CRUD::field('image')->type("browse")->label("Ảnh banner");
+        CRUD::field('name')->label("Tên banner");
+        CRUD::field('position')->type("select_from_array")->options($this->position());
+        CRUD::field('url')->label("Click URL");
+        if (!permission("manager")) {
+            $this->crud->denyAccess(["list", "create", "update", "delete"]);
+        }
 
         /**
          * Fields can be defined using the fluent syntax or array syntax:

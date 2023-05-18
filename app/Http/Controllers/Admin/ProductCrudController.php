@@ -29,7 +29,7 @@ class ProductCrudController extends CrudController
     {
         CRUD::setModel(\App\Models\Product::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/product');
-        CRUD::setEntityNameStrings('product', 'products');
+        CRUD::setEntityNameStrings('Sản phẩm', 'Danh sách sản phẩm');
         if (!permission("manager")) {
             $this->crud->denyAccess(["list", "create", "update", "delete"]);
         }

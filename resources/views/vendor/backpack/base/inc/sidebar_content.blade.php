@@ -25,9 +25,11 @@
 @endif
 
 @if(permission("manager"))
+    <li class="nav-item"><a class="nav-link" href="{{ backpack_url('banner') }}"><i class="nav-icon la la-images"></i> Banner/Slider</a></li>
     <li class="nav-item"><a class="nav-link" href="{{ backpack_url('page') }}"><i class="nav-icon la la-pager"></i>
             Trang</a></li>
-    <li class="nav-item"><a class="nav-link" href="{{ backpack_url('page/area') }}"><i class="nav-icon la la-arrows-alt"></i>
-            Vị
-            trí widget</a></li>
+    <li class="nav-item"><a class="nav-link" href="{{ backpack_url('page/area') }}"><i class="nav-icon la la-external-link-square-alt"></i>
+           Footer - Cuối trang</a></li>
 @endif
+
+

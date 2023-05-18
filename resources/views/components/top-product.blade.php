@@ -32,7 +32,7 @@
             @endforeach
         </div>
         <div class="d-flex justify-content-end mb-3">
-            <a href="#" class="text-reset px-2">Xem tất cả <i class="fas fa-chevron-circle-right"></i></a>
+            <a href="{{route("products",2)}}" class="text-reset px-2">Xem tất cả <i class="fas fa-chevron-circle-right"></i></a>
         </div>
     </div>
 @endforeach
