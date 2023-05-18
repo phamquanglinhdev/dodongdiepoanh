@@ -17,7 +17,7 @@
                     <a href="{{route("product",$product->getId())}}">
                         <div class="card rounded-0 p-lg-0 border h-100">
                             <img src="{{asset($product->getThumbnail())}}" class="card-img-top rounded-0"
-                                 alt="Fissure in Sandstone" loading="lazy"/>
+                                 alt="Fissure in Sandstone"/>
                             <div class="card-body">
                                 <div class="card-title text-main fw-bold ">{{$product->getName()}}</div>
                                 <div class="card-text">Loại : <a
