@@ -21,9 +21,10 @@
     <link rel="stylesheet" href="{{asset("css/mdb.min.css")}}"/>
     <link rel="stylesheet" href="{{asset("css/app.css")}}"/>
     @stack("page_css")
-
+    {!! setting("google_tag_manager") !!}
 </head>
 <body>
+{!! setting("google_tag_manager_noscript") !!}
 <!-- Start your project here-->
 @include("sites.inc.navbar")
 @yield("content")
