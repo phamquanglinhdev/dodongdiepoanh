@@ -23,6 +23,9 @@
             }
 
         }
+        figure{
+            text-align: center;
+        }
     </style>
 @endpush
 @section("content")
