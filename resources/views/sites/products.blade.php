@@ -32,11 +32,11 @@
                     @foreach($productListViewModel->getProduct() as $product)
                         <div class="col-lg-3 mb-3 col-6 p-lg-3 p-1">
                             <a href="{{route("product",$product->getId())}}">
-                                <div class="card rounded-0 p-lg-0">
+                                <div class="card rounded-0 p-lg-0 border h-100">
                                     <img src="{{url($product->getThumbnail())}}" class="card-img-top rounded-0"
                                          alt="Fissure in Sandstone"/>
                                     <div class="card-body">
-                                        <h5 class="card-title text-main ">{{$product->getName()}}</h5>
+                                        <div class="card-title text-main fw-bold text-uppercase ">{{$product->getName()}}</div>
                                         <div class="card-text">Loại : <a href="#">{{$product->getCategoryName()}}</a>
                                         </div>
                                         <div class="card-text">Kích thước : {{$product->getSize()}}</div>
