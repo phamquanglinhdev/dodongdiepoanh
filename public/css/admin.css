@@ -1,3 +1,10 @@
 .navbar-brand{
     opacity: 1!important;
 }
+.bg-main {
+    background: #661013 !important;
+}
+
+.text-main {
+    color: #661013 !important;
+}
