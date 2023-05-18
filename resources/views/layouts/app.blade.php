@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta name="description" content="{{setting("home_description")}}"/>
+    <meta name="keywords" content="{{setting("keywords")}}"/>
     <meta http-equiv="x-ua-compatible" content="ie=edge"/>
-    <meta name="description" content="Đồ đồng Điệp oanh">
     @stack("page_meta")
     <title>@yield("title")</title>
     <!-- MDB icon -->
