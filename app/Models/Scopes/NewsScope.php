@@ -13,8 +13,10 @@ class NewsScope implements Scope
      */
     public function apply(Builder $builder, Model $model): void
     {
-        if (backpack_user()->roles == "author") {
-            $builder->where("author_id", backpack_user()->id);
+        if (backpack_auth()->check()) {
+            if (backpack_user()->roles == "author") {
+                $builder->where("author_id", backpack_user()->id);
+            }
         }
     }
 }
