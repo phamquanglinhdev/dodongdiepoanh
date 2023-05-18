@@ -4,7 +4,7 @@
     * @var BannerHomeViewModel $bannerHomeViewModel
     */
 @endphp
-<div id="carouselExampleControls" class="carousel slide" data-mdb-ride="carousel">
+<div id="carouselExampleControls" class="carousel slide  carousel-fade" data-mdb-ride="carousel">
     <div class="carousel-inner">
         @foreach($bannerHomeViewModel->getBanners() as $banner)
             <div class="carousel-item @if($loop->first) active @endif">

@@ -19,7 +19,7 @@
         </a>
     </div>
     <div class="rounded-circle">
-        <a href="tel:{{str_ireplace(" ","",setting("business_phone"))}}">
+        <a href="tel:{{str_replace(" ","",setting("business_phone"))}}">
             <img src="{{asset("img/phones.gif")}}"
                  style="width: 3em">
         </a>
