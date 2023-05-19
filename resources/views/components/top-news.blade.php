@@ -61,13 +61,13 @@
                                 <div class="fw-light">
                                     {{$news->getDescription()}}
                                 </div>
-                                <div class="mt-1 fw-lighter">Ngày đăng : {{$news->getUpdatedAt()}}</div>
+                                <div class="mt-1 fw-lighter">Nguồn : {{\Illuminate\Support\Str::limit($news->getSlug())}}</div>
                             </div>
                         </div>
                     </a>
                 </div>
             @endforeach
         </div>
-        <a href="{{route("news",1)}}" class="text-reset px-lg-2">Xem tất cả <i class="fas fa-chevron-circle-right"></i></a>
+        <a href="{{route("news",3)}}" class="text-reset px-lg-2">Xem tất cả <i class="fas fa-chevron-circle-right"></i></a>
     </div>
 </div>
