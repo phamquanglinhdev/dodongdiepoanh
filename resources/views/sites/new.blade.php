@@ -32,7 +32,7 @@
             text-align: center;
         }
 
-        figure img {
+        figure > img {
             width: 100% !important;
         }
     </style>
