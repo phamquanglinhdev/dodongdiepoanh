@@ -70,7 +70,6 @@ class NewsRepository extends BaseRepository
     public function getMostNewByCreatedAt(): array|Collection
     {
         return $this->getBuilder()
-            ->where("type_id", "!=", 3)
             ->where("draft", 0)
             ->orderBy("created_at", "DESC")
             ->limit(4)->get();
