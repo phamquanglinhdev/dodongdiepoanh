@@ -5,7 +5,7 @@ namespace App\ViewModels\News\Object;
 class NewsEditObject
 {
     public function __construct(
-        private readonly int $id,
+        private readonly int    $id,
         private readonly string $title,
         private readonly string $body,
         private readonly string $thumbnail,
@@ -13,8 +13,17 @@ class NewsEditObject
         private readonly int    $type_id,
         private readonly int    $draft,
         private readonly int    $pin,
+        private readonly array  $tags,
     )
     {
+    }
+
+    /**
+     * @return array
+     */
+    public function getTags(): array
+    {
+        return $this->tags;
     }
 
     /**

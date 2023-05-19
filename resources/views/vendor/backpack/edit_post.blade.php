@@ -93,7 +93,19 @@
                                           name="description">{{$old->getDescription()}}</textarea>
                             </div>
                         </div>
-
+                        <div class="my-2">
+                            <label>Thẻ:</label>
+                            <select name="tags[]" class="form-control js-example-tokenizer" multiple="multiple">
+                                @foreach($newsEditViewModel->getTags() as $tag)
+                                    <option
+                                        @if(in_array($tag->getId(),$old->getTags()))
+                                            selected="selected"
+                                        @endif
+                                        value="{{$tag->getName()}}">{{$tag->getName()}}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -219,5 +231,23 @@
                 reader.readAsDataURL(file);
             })
         })
+    </script>
+    <link href="{{ asset('packages/select2/dist/css/select2.min.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ asset('packages/select2-bootstrap-theme/dist/select2-bootstrap.min.css') }}" rel="stylesheet"
+          type="text/css"/>
+    <script src="{{ asset('packages/select2/dist/js/select2.full.min.js') }}"></script>
+    @if (app()->getLocale() !== 'en')
+        <script src="{{ asset('packages/select2/dist/js/i18n/' . app()->getLocale() . '.js') }}"></script>
+    @endif
+    <script>
+        $(document).ready(
+            function () {
+                $(".js-example-tokenizer").select2({
+                    tags: true,
+                    tokenSeparators: [',']
+                })
+            }
+        )
+
     </script>
 @endsection

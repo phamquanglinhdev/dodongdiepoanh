@@ -5,10 +5,14 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Requests\NewsRequest;
 use App\Models\News;
 use App\Repositories\NewsRepository;
+use App\Repositories\TagRepository;
+use App\ViewModels\News\NewsAddViewModel;
 use App\ViewModels\News\NewsEditViewModel;
 use App\ViewModels\News\Object\NewsStoreObject;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
@@ -135,25 +139,37 @@ class NewsCrudController extends CrudController
     }
 
     public
-    function create(): View
+    function create(TagRepository $tagRepository): View
     {
         return \view("vendor.backpack.add_post", [
-            'postAddViewModel' => null
+            'newsAddViewModel' => new NewsAddViewModel($tagRepository->listAll())
         ]);
     }
 
-    public function edit($id, NewsRepository $newsRepository): View
+    public function edit($id, NewsRepository $newsRepository, TagRepository $tagRepository): View
     {
         return \view("vendor.backpack.edit_post", [
-            'newsEditViewModel' => new NewsEditViewModel(news: $newsRepository->getNewById($id))
+            'newsEditViewModel' => new NewsEditViewModel(news: $newsRepository->getNewById($id), tags: $tagRepository->listAll())
         ]);
     }
 
     public
-    function store(NewsRequest $request, NewsRepository $newsRepository): RedirectResponse
+    function store(NewsRequest $request, NewsRepository $newsRepository, TagRepository $tagRepository): RedirectResponse
     {
-
+        $tagIds = [];
         $collection = $request->except("_token");
+        foreach ($collection["tags"] as $tagName) {
+            $tag = $tagRepository->findByName($tagName);
+            if ($tag) {
+                $tagIds[] = $tag->id;
+            } else {
+                /**
+                 * @var Model|Builder $tagCreate
+                 */
+                $tagCreate = $tagRepository->getBuilder()->create(["name" => $tagName]);
+                $tagIds[] = $tagCreate->id;
+            }
+        }
         $newStoreObject = new NewsStoreObject(
             author_id: backpack_user()->id,
             title: $collection["title"],
@@ -172,10 +188,11 @@ class NewsCrudController extends CrudController
             $newsModel->thumbnail = $newsRepository->uploadThumbnail($collection["thumbnail"]);
             $newsModel->save();
         }
+        $newsModel->Tags()->attach($tagIds);
         return redirect("admin/news");
     }
 
-    public function update(Request $request, NewsRepository $newsRepository, int $id): RedirectResponse
+    public function update(Request $request, NewsRepository $newsRepository, TagRepository $tagRepository, int $id): RedirectResponse
     {
 
         /**
@@ -195,6 +212,20 @@ class NewsCrudController extends CrudController
                 $newsModel->thumbnail = $newsRepository->uploadThumbnail($newUpdateObject["thumbnail"]);
             }
         }
+        $tagIds = [];
+        foreach ($newUpdateObject["tags"] as $tagName) {
+            $tag = $tagRepository->findByName($tagName);
+            if ($tag) {
+                $tagIds[] = $tag->id;
+            } else {
+                /**
+                 * @var Model|Builder $tagCreate
+                 */
+                $tagCreate = $tagRepository->getBuilder()->create(["name" => $tagName]);
+                $tagIds[] = $tagCreate->id;
+            }
+        }
+        $newsModel->Tags()->sync($tagIds);
         $newsModel->save();
         return redirect("admin/news");
     }

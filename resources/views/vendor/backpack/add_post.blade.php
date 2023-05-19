@@ -1,3 +1,9 @@
+@php
+    use App\ViewModels\News\NewsAddViewModel;
+    /**
+* @var NewsAddViewModel $newsAddViewModel
+ */
+@endphp
 @extends(backpack_view("blank"))
 @section("after_styles")
     <style>
@@ -80,6 +86,14 @@
                             </div>
                         </div>
                         <input type="file" hidden="" id="thumbnail_file" name="thumbnail">
+                        <div class="my-2">
+                            <label>Thẻ:</label>
+                            <select name="tags[]" class="form-control js-example-tokenizer" multiple="multiple">
+                                @foreach($newsAddViewModel->getTags() as $tag)
+                                    <option value="{{$tag->getName()}}">{{$tag->getName()}}</option>
+                                @endforeach
+                            </select>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -205,5 +219,31 @@
                 reader.readAsDataURL(file);
             })
         })
+    </script>
+    <script>
+        $(".js-example-tokenizer").select2({
+            tags: true,
+            tokenSeparators: [',']
+        })
+
+    </script>
+
+    <link href="{{ asset('packages/select2/dist/css/select2.min.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ asset('packages/select2-bootstrap-theme/dist/select2-bootstrap.min.css') }}" rel="stylesheet"
+          type="text/css"/>
+    <script src="{{ asset('packages/select2/dist/js/select2.full.min.js') }}"></script>
+    @if (app()->getLocale() !== 'en')
+        <script src="{{ asset('packages/select2/dist/js/i18n/' . app()->getLocale() . '.js') }}"></script>
+    @endif
+    <script>
+        $(document).ready(
+            function () {
+                $(".js-example-tokenizer").select2({
+                    tags: true,
+                    tokenSeparators: [',']
+                })
+            }
+        )
+
     </script>
 @endsection

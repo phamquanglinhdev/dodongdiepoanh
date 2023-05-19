@@ -2,16 +2,30 @@
 
 namespace App\ViewModels\News\Object;
 
+use App\Models\Tag;
+use Illuminate\Database\Eloquent\Collection;
+
 class NewShowObject
 {
     public function __construct(
-        private readonly string $title,
-        private readonly string $updated_at,
-        private readonly string $body,
-        private readonly string $thumbnail,
-        private readonly int    $type_id,
+        private readonly string           $title,
+        private readonly string           $updated_at,
+        private readonly string           $body,
+        private readonly string           $thumbnail,
+        private readonly int              $type_id,
+        private readonly Collection|array $tags,
     )
     {
+    }
+
+    /**
+     * @return NewTagsObject[]
+     */
+    public function getTags(): array
+    {
+        return $this->tags->map(fn(Tag $tag) => new NewTagsObject(
+            id: $tag["id"], name: $tag['name']
+        ));
     }
 
     /**
