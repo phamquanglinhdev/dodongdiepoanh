@@ -2,6 +2,7 @@
 
 namespace App\ViewModels\News;
 
+use App\Models\News;
 use App\ViewModels\News\Object\NewShowObject;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -20,13 +21,16 @@ class NewShowViewModel
      */
     public function getNews(): NewShowObject
     {
+        /**
+         * @var News $news
+         */
         $news = $this->news;
         return new NewShowObject(
             title: $news["title"],
             updated_at: Carbon::parse($news["updated_at"])->isoFormat("D/M/Y h:m:s"),
             body: $news["body"],
             thumbnail: $news["thumbnail"],
-            type_id: $news["type_id"]
+            type_id: $news["type_id"], tags: $news->Tags()->get()
         );
     }
 }

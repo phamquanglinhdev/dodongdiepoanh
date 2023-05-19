@@ -17,13 +17,14 @@
                 height: auto !important;
             }
 
-            .content span, .content figure img,.content figure {
+            .content span, .content figure img, .content figure {
                 width: 100% !important;
                 height: auto !important;
             }
 
         }
-        figure{
+
+        figure {
             text-align: center;
         }
     </style>
@@ -59,22 +60,19 @@
                 </div>
                 <hr>
                 <div>
-                    <a href="#" class="text-reset">
-                        <span>Đọc thêm: Bài viết mẫu nữa nè</span>
-                        <i class="fas fa-arrow-alt-circle-right"></i>
-                    </a>
+{{--                    <a href="#" class="text-reset">--}}
+{{--                        <span>Đọc thêm: Bài viết mẫu nữa nè</span>--}}
+{{--                        <i class="fas fa-arrow-alt-circle-right"></i>--}}
+{{--                    </a>--}}
                     <div class="text-main">
                         <i class="fas fa-tags"></i>
                         <span>Tags:</span>
-                        <a href="#" class="text-reset">
-                            Bài viết
-                        </a>,
-                        <a href="#" class="text-reset">
-                            Khoa học
-                        </a>,
-                        <a href="#" class="text-reset">
-                            Đúc đồng
-                        </a>
+                        @foreach($news->getTags() as $tag)
+                            <a href="#" class="text-reset">
+                                {{$tag->getName()}}
+                            </a>
+                            @if(!$loop->last) ,@endif
+                        @endforeach
                     </div>
                 </div>
             </div>

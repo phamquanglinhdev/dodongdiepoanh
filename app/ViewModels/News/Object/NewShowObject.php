@@ -25,7 +25,7 @@ class NewShowObject
     {
         return $this->tags->map(fn(Tag $tag) => new NewTagsObject(
             id: $tag["id"], name: $tag['name']
-        ));
+        ))->toArray();
     }
 
     /**
