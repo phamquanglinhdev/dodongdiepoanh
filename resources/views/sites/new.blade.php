@@ -60,7 +60,7 @@
                     <span class="">Cập nhật lần cuối: {{$news->getUpdatedAt()}} </span>
                 </div>
                 <hr>
-                <div class="content col-lg-9 col-12">
+                <div class="content  col-12">
                     {!! $news->getBody() !!}
                 </div>
                 <div class="clearfix"></div>
