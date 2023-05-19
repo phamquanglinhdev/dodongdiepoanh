@@ -4,7 +4,6 @@
     * @var NewsEditViewModel $newsEditViewModel
     */
     $old=$newsEditViewModel->getNews();
-    dd($old->getTags())
 @endphp
 @extends(backpack_view("blank"))
 @section("after_styles")
