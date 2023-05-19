@@ -38,18 +38,19 @@
     </div>
     <div class="container-fluid">
         <div class="row">
-            <div class="col-lg-3 d-none d-lg-block border">
-                @include("components.top-news-2")
-            </div>
-            <div class="col-lg-9 col-12">
+{{--            <div class="col-lg-3 d-none d-lg-block border">--}}
+{{--                @include("components.top-news-2")--}}
+{{--            </div>--}}
+            <div class="col-12">
                 <div class="h2 text-main text-uppercase fw-bold">
                     {{$page->getTitle()}}
                 </div>
                 <hr>
-                <div class="content col-lg-9 col-12">
+                <div class="content col-12">
                     {!! $page->getBody() !!}
                 </div>
                 <hr>
+                @include("components.top-news")
             </div>
         </div>
     </div>

@@ -19,12 +19,21 @@
             <hr>
             @foreach($topNewHomeViewModel->getNormalNews() as $news)
                 <div class="new border-bottom mb-2">
-                    <div>
-                        <span class="fw-semibold">{{$news->getUpdatedAt()}}</span> -
-                        <span class="text-main fw-bold">{{$news->getType()}}</span>
-                    </div>
-                    <a href="{{route("new",$news->getSlug())}}" class="text-reset fw-normal">
-                        <span>{{$news->getTitle()}}</span>
+                    <a href="{{route("new",$news->getSlug())}}" class="text-reset">
+                        <div class="row">
+                            <div class="col-3">
+                                <img src="{{url($news->getThumbnail())}}" class="w-100">
+                            </div>
+                            <div class="col-9">
+                                <div class="fw-bold h5 text-main">
+                                    {{$news->getTitle()}}
+                                </div>
+                                <div class="fw-light">
+                                    {{$news->getDescription()}}
+                                </div>
+                                <div class="mt-1 fw-lighter">Ngày đăng : {{$news->getUpdatedAt()}}</div>
+                            </div>
+                        </div>
                     </a>
                 </div>
             @endforeach
@@ -35,17 +44,26 @@
         <div class="px-1 mb-3">
             <div class="h5 text-main fw-bold">
                 <i class="fas fa-newspaper"></i>
-                <span>Tin tức doanh nghiệp</span>
+                <span>Báo chí nói gì về Đồ đồng Điệp Oanh</span>
             </div>
             <hr>
             @foreach($topNewHomeViewModel->getBusinessNews() as $news)
                 <div class="new border-bottom mb-2">
-                    <div>
-                        <span class="fw-semibold">{{$news->getUpdatedAt()}}</span> -
-                        <span class="text-main fw-bold">{{$news->getType()}}</span>
-                    </div>
-                    <a href="{{route("new",$news->getSlug())}}" class="text-reset fw-normal">
-                        <span>{{$news->getTitle()}}</span>
+                    <a href="{{route("new",$news->getSlug())}}" class="text-reset">
+                        <div class="row">
+                            <div class="col-3">
+                                <img src="{{url($news->getThumbnail())}}" class="w-100">
+                            </div>
+                            <div class="col-9">
+                                <div class="fw-bold h5 text-main">
+                                    {{$news->getTitle()}}
+                                </div>
+                                <div class="fw-light">
+                                    {{$news->getDescription()}}
+                                </div>
+                                <div class="mt-1 fw-lighter">Ngày đăng : {{$news->getUpdatedAt()}}</div>
+                            </div>
+                        </div>
                     </a>
                 </div>
             @endforeach

@@ -50,7 +50,7 @@ class NewsRepository extends BaseRepository
             ->orderBy("created_at", "DESC")
             ->orderBy("pin", "DESC")
             ->orderBy("view", "DESC")
-            ->limit(8)->get();
+            ->limit(4)->get();
     }
 
     public function getMostNewByCreatedAt(): array|Collection
@@ -58,7 +58,7 @@ class NewsRepository extends BaseRepository
         return $this->getBuilder()
             ->where("draft", 0)
             ->orderBy("created_at", "DESC")
-            ->limit(8)->get();
+            ->limit(4)->get();
     }
 
     public function getTopNormalNew(): array|Collection
@@ -67,7 +67,7 @@ class NewsRepository extends BaseRepository
             ->where("type_id", 0)
             ->where("draft", 0)
             ->orderBy("pin", "DESC")
-            ->limit(8)->get();
+            ->limit(4)->get();
     }
     public function getTopBusinessNew(): array|Collection
     {
@@ -75,6 +75,6 @@ class NewsRepository extends BaseRepository
             ->where("type_id", 1)
             ->where("draft", 0)
             ->orderBy("pin", "DESC")
-            ->limit(8)->get();
+            ->limit(4)->get();
     }
 }
