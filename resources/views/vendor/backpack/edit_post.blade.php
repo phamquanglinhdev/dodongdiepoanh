@@ -4,6 +4,7 @@
     * @var NewsEditViewModel $newsEditViewModel
     */
     $old=$newsEditViewModel->getNews();
+    dd($old->getTags())
 @endphp
 @extends(backpack_view("blank"))
 @section("after_styles")
@@ -98,7 +99,7 @@
                             <select name="tags[]" class="form-control js-example-tokenizer" multiple="multiple">
                                 @foreach($newsEditViewModel->getTags() as $tag)
                                     <option
-                                        @if(in_array((int)$tag->getId(),$old->getTags()))
+                                        @if(in_array($tag->getId(),$old->getTags()))
                                             selected="selected"
                                         @endif
                                         value="{{$tag->getName()}}">{{$tag->getName()}}
