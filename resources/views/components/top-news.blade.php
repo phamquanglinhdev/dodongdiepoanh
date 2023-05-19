@@ -22,7 +22,7 @@
                     <a href="{{route("new",$news->getSlug())}}" class="text-reset">
                         <div class="row">
                             <div class="col-3">
-                                <div class="ratio ratio-4x3">
+                                <div class="ratio ratio-16x9">
                                     <img src="{{url($news->getThumbnail())}}" class="w-100" alt="">
                                 </div>
                             </div>
@@ -54,7 +54,7 @@
                     <a href="{{route("new",$news->getSlug())}}" class="text-reset">
                         <div class="row">
                             <div class="col-3">
-                                <div class="ratio ratio-4x3">
+                                <div class="ratio ratio-16x9">
                                     <img src="{{url($news->getThumbnail())}}" class="w-100" alt="">
                                 </div>
                             </div>
