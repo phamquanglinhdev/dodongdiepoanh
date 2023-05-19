@@ -25,16 +25,18 @@
             .content div {
                 width: 100% !important;
             }
+            .content img {
+                width: 100% !important;
+            }
+            figure {
+                text-align: center;
+            }
 
         }
 
-        figure {
-            text-align: center;
-        }
 
-        .content img {
-            width: 100% !important;
-        }
+
+
     </style>
 @endpush
 @section("content")
