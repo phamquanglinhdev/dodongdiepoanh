@@ -35,7 +35,7 @@
                                         <span class="fw-semibold">{{$news->getUpdatedAt()}}</span> -
                                         <span class="fw-bold text-main">{{$news->getType()}}</span>
                                     </div>
-                                    <a href="{{route('new',$news->getSlug())}}" class="text-reset fw-normal">
+                                    <a href="{{$news->getSlug()}}" class="text-reset fw-normal">
                                         <div>{{Str::limit($news->getTitle())}}</div>
                                     </a>
                                 </div>
@@ -51,7 +51,7 @@
                                         <span class="fw-semibold">{{$news->getUpdatedAt()}}</span> -
                                         <span class="fw-bold text-main">{{$news->getType()}}</span>
                                     </div>
-                                    <a href="{{route('new',$news->getSlug())}}" class="text-reset fw-normal">
+                                    <a href="{{$news->getSlug()}}" class="text-reset fw-normal">
                                         <div>{{Str::limit($news->getTitle())}}</div>
                                     </a>
                                 </div>
@@ -77,7 +77,7 @@
                     <span class="fw-semibold">{{$news->getUpdatedAt()}}</span> -
                     <span class="fw-bold text-main">{{$news->getType()}}</span>
                 </div>
-                <a href="{{route('new',$news->getSlug())}}" class="text-reset fw-normal">
+                <a href="{{$news->getSlug()}}" class="text-reset fw-normal">
                     <div>{{Str::limit($news->getTitle())}}</div>
                 </a>
             </div>
@@ -93,7 +93,7 @@
                     <span class="fw-semibold">{{$news->getUpdatedAt()}}</span> -
                     <span class="fw-bold text-main">{{$news->getType()}}</span>
                 </div>
-                <a href="{{route('new',$news->getSlug())}}" class="text-reset fw-normal">
+                <a href="{{$news->getSlug()}}" class="text-reset fw-normal">
                     <div>{{Str::limit($news->getTitle())}}</div>
                 </a>
             </div>

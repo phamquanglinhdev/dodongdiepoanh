@@ -22,7 +22,7 @@ class NewsController extends Controller
         return \view("sites.news", [
             'newsListViewModel' => new NewListViewModel(
                 news: $this->newsRepository->getNewsByType($type, 8),
-                new_type_name: $type == 0 ? "Tin tức thường" : "Tin tức doanh nghiệp"
+                new_type_name: $type != 3 ? "Tin tức" : "Báo chí nói gì về Đồ đồng Điệp Oanh"
             )
         ]);
     }
