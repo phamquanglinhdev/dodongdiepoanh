@@ -17,8 +17,8 @@ class TopViewHomeComposer
 
     public function compose(View $view): void
     {
-        $normal = $this->newsRepository->getTopNormalNew();
-        $business = $this->newsRepository->getTopBusinessNew();
+        $normal = $this->newsRepository->getMostNewsByView();
+        $business = $this->newsRepository->getNewspapers();
         $view->with("topNewHomeViewModel", new TopNewHomeViewModel($normal, $business));
     }
 }

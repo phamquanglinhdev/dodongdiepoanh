@@ -21,7 +21,12 @@ class TopNewHomeViewModel
     public function getBusinessNews(): array
     {
         return $this->businessNews->map(fn(News $news) => new TopNewsObject(
-            title: $news["title"], slug: $news["slug"], type: "Tin tức thường",updated_at: $news["updated_at"],thumbnail: $news["thumbnail"],description: $news["description"]
+            title: $news["title"],
+            slug: route('new', $news["slug"]),
+            type: "Tin tức thường",
+            updated_at: $news["updated_at"],
+            thumbnail: $news["thumbnail"],
+            description: $news["description"]
         ))->toArray();
     }
 
@@ -31,7 +36,12 @@ class TopNewHomeViewModel
     public function getNormalNews(): array
     {
         return $this->normalNews->map(fn(News $news) => new TopNewsObject(
-            title: $news["title"], slug: $news["slug"], type: "Tin tức thường",updated_at: $news["updated_at"],thumbnail: $news["thumbnail"],description: $news["description"]
+            title: $news["title"],
+            slug: url($news["body"]),
+            type: "Báo chí nói gì về chúng tôi",
+            updated_at: $news["updated_at"],
+            thumbnail: $news["thumbnail"],
+            description: $news["description"]
         ))->toArray();
     }
 }

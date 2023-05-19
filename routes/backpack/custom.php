@@ -33,4 +33,5 @@ Route::group([
     Route::get('setting', [SettingCrudController::class,"index"])->name("setting.index");
     Route::put('setting/updates', [SettingCrudController::class,"updates"])->name("setting.updates");
     Route::crud('tag', 'TagCrudController');
+    Route::crud('newspaper', 'NewspaperCrudController');
 }); // this should be the absolute last line of this file

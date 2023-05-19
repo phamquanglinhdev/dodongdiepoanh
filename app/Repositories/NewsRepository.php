@@ -47,6 +47,7 @@ class NewsRepository extends BaseRepository
     {
         return $this->getBuilder()
             ->where("draft", 0)
+            ->where("type_id","!=",3)
             ->orderBy("created_at", "DESC")
             ->orderBy("pin", "DESC")
             ->orderBy("view", "DESC")
@@ -56,6 +57,7 @@ class NewsRepository extends BaseRepository
     public function getMostNewByCreatedAt(): array|Collection
     {
         return $this->getBuilder()
+            ->where("type_id","!=",3)
             ->where("draft", 0)
             ->orderBy("created_at", "DESC")
             ->limit(4)->get();
@@ -77,4 +79,13 @@ class NewsRepository extends BaseRepository
             ->orderBy("pin", "DESC")
             ->limit(4)->get();
     }
+    public function getNewspapers(): array|Collection
+    {
+        return $this->getBuilder()
+            ->where("type_id",3)
+            ->where("draft", 0)
+            ->orderBy("pin", "DESC")
+            ->limit(4)->get();
+    }
+
 }
