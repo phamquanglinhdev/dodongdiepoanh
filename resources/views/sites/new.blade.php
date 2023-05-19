@@ -21,19 +21,19 @@
                 width: 100% !important;
                 height: auto !important;
             }
-            .content div{
-                width: 100%!important;
+
+            .content div {
+                width: 100% !important;
             }
-            .image_resized{
-                padding: 1em;
-            }
+
         }
 
         figure {
             text-align: center;
         }
-        .image_resized{
-            padding: 2em;
+
+        figure img {
+            width: 100% !important;
         }
     </style>
 @endpush
@@ -69,10 +69,10 @@
                 <div class="clearfix"></div>
                 <hr>
                 <div>
-{{--                    <a href="#" class="text-reset">--}}
-{{--                        <span>Đọc thêm: Bài viết mẫu nữa nè</span>--}}
-{{--                        <i class="fas fa-arrow-alt-circle-right"></i>--}}
-{{--                    </a>--}}
+                    {{--                    <a href="#" class="text-reset">--}}
+                    {{--                        <span>Đọc thêm: Bài viết mẫu nữa nè</span>--}}
+                    {{--                        <i class="fas fa-arrow-alt-circle-right"></i>--}}
+                    {{--                    </a>--}}
                     <div class="text-main">
                         <i class="fas fa-tags"></i>
                         <span>Tags:</span>
@@ -80,7 +80,9 @@
                             <a href="#" class="text-reset">
                                 {{$tag->getName()}}
                             </a>
-                            @if(!$loop->last) ,@endif
+                            @if(!$loop->last)
+                                ,
+                            @endif
                         @endforeach
                     </div>
                 </div>
