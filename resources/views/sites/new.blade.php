@@ -21,11 +21,19 @@
                 width: 100% !important;
                 height: auto !important;
             }
-
+            .content div{
+                width: 100%!important;
+            }
+            .image_resized{
+                padding: 1em;
+            }
         }
 
         figure {
             text-align: center;
+        }
+        .image_resized{
+            padding: 2em;
         }
     </style>
 @endpush
