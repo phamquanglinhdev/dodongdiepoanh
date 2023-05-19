@@ -40,7 +40,7 @@
             <div class="row bg-white mb-5">
                 <div class="col-lg-9 col-12 py-3">
                     <div class="form-group">
-                        <label for="title">Loại tin tức</label>
+                        <label for="title">Tiêu đề</label>
                         <input class="form-control border" name="title" placeholder="Tiêu đề">
                         @error("title")
                         <small class="text-danger">{{$message}}</small>
