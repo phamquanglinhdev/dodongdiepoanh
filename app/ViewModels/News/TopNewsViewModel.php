@@ -38,7 +38,7 @@ class TopNewsViewModel
         return $this->recentlyNews->map(fn(News $news) => new TopNewsObject(
             title: $news["title"],
             slug: $news["slug"],
-            type: $news["type_id"] != 3 ? "Tin tức" : "Bao chí",
+            type: $news["type_id"] != 3 ? "Tin tức" : "Báo chí",
             updated_at: $news["updated_at"],
             thumbnail: $news["thumbnail"],
             description: $news["description"]
