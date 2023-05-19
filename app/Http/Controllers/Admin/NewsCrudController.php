@@ -158,16 +158,19 @@ class NewsCrudController extends CrudController
     {
         $tagIds = [];
         $collection = $request->except("_token");
-        foreach ($collection["tags"] as $tagName) {
-            $tag = $tagRepository->findByName($tagName);
-            if ($tag) {
-                $tagIds[] = $tag->id;
-            } else {
-                /**
-                 * @var Model|Builder $tagCreate
-                 */
-                $tagCreate = $tagRepository->getBuilder()->create(["name" => $tagName]);
-                $tagIds[] = $tagCreate->id;
+
+        if (isset($collection["tags"])) {
+            foreach ($collection["tags"] as $tagName) {
+                $tag = $tagRepository->findByName($tagName);
+                if ($tag) {
+                    $tagIds[] = $tag->id;
+                } else {
+                    /**
+                     * @var Model|Builder $tagCreate
+                     */
+                    $tagCreate = $tagRepository->getBuilder()->create(["name" => $tagName]);
+                    $tagIds[] = $tagCreate->id;
+                }
             }
         }
         $newStoreObject = new NewsStoreObject(
@@ -194,7 +197,6 @@ class NewsCrudController extends CrudController
 
     public function update(Request $request, NewsRepository $newsRepository, TagRepository $tagRepository, int $id): RedirectResponse
     {
-
         /**
          * @var News $newsModel
          */
@@ -213,16 +215,18 @@ class NewsCrudController extends CrudController
             }
         }
         $tagIds = [];
-        foreach ($newUpdateObject["tags"] as $tagName) {
-            $tag = $tagRepository->findByName($tagName);
-            if ($tag) {
-                $tagIds[] = $tag->id;
-            } else {
-                /**
-                 * @var Model|Builder $tagCreate
-                 */
-                $tagCreate = $tagRepository->getBuilder()->create(["name" => $tagName]);
-                $tagIds[] = $tagCreate->id;
+        if (isset($newUpdateObject["tags"])) {
+            foreach ($newUpdateObject["tags"] as $tagName) {
+                $tag = $tagRepository->findByName($tagName);
+                if ($tag) {
+                    $tagIds[] = $tag->id;
+                } else {
+                    /**
+                     * @var Model|Builder $tagCreate
+                     */
+                    $tagCreate = $tagRepository->getBuilder()->create(["name" => $tagName]);
+                    $tagIds[] = $tagCreate->id;
+                }
             }
         }
         $newsModel->Tags()->sync($tagIds);
