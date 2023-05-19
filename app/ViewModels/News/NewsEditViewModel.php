@@ -36,7 +36,6 @@ class NewsEditViewModel
          * @var News $news
          */
         $news = $this->news;
-        dd($news->Tags()->get());
         return new NewsEditObject(
             id: $news["id"],
             title: $news["title"],
