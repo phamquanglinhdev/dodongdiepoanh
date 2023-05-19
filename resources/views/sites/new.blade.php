@@ -32,7 +32,7 @@
             text-align: center;
         }
 
-        img {
+        .content img {
             width: 100% !important;
         }
     </style>
