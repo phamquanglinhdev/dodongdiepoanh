@@ -21,8 +21,10 @@
                 <div class="new border-bottom mb-2">
                     <a href="{{route("new",$news->getSlug())}}" class="text-reset">
                         <div class="row">
-                            <div class="col-3 ratio ratio-16x9">
-                                <img src="{{url($news->getThumbnail())}}" class="w-100">
+                            <div class="col-3">
+                                <div class="ratio ratio-16x9">
+                                    <img src="{{url($news->getThumbnail())}}" class="w-100" alt="">
+                                </div>
                             </div>
                             <div class="col-9">
                                 <div class="fw-bold h5 text-main">
@@ -51,8 +53,10 @@
                 <div class="new border-bottom mb-2">
                     <a href="{{route("new",$news->getSlug())}}" class="text-reset">
                         <div class="row">
-                            <div class="col-3 ratio ratio-16x9">
-                                <img src="{{url($news->getThumbnail())}}" class="w-100">
+                            <div class="col-3">
+                                <div class="ratio ratio-16x9">
+                                    <img src="{{url($news->getThumbnail())}}" class="w-100" alt="">
+                                </div>
                             </div>
                             <div class="col-9">
                                 <div class="fw-bold h5 text-main">
