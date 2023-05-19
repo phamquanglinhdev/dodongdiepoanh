@@ -21,9 +21,6 @@
     </div>
     <div class="container-fluid">
         <div class="row">
-            <div class="col-lg-3 d-lg-block d-none">
-                @include("components.top-news-2")
-            </div>
             <div class="col-lg-9 col-12">
                 <div class="row">
                     <div class=" col-lg-3 col-6 col-12 mb-3">
@@ -45,7 +42,7 @@
                                         {{Str::limit($news->getDescription(),100)}}
                                     </p>
                                     <div class="text-center">
-                                        <a href="{{route("new",$news->getSlug())}}" class="text-main w-100">Xem chi
+                                        <a href="{{$news->getSlug()}}" class="text-main w-100">Xem chi
                                             tiết</a>
                                     </div>
                                 </div>
@@ -56,6 +53,9 @@
                     @include("sites.inc.pagination",
                         ["currentPage"=>$newsListViewModel->getPagination()->currentPage(),"totalPage"=>$newsListViewModel->getPagination()->lastPage()])
                 </div>
+            </div>
+            <div class="col-lg-3 d-lg-block d-none">
+                @include("components.top-news-2")
             </div>
         </div>
     </div>

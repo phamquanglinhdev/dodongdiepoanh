@@ -34,7 +34,20 @@ class NewsRepository extends BaseRepository
 
     public function getNewsByType($type = 0, $paginate = 15): LengthAwarePaginator
     {
-        return $this->getBuilder()->where("draft", 0)->where("type_id", $type)->orderBy("pin", "DESC")->orderBy("created_at", "DESC")->paginate($paginate);
+        if ($type == 3) {
+            return $this->getBuilder()
+                ->where("draft", 0)
+                ->where("type_id", 3)
+                ->orderBy("pin", "DESC")
+                ->orderBy("created_at", "DESC")
+                ->paginate($paginate);
+        }
+        return $this->getBuilder()
+            ->where("draft", 0)
+            ->where("type_id", "!=", 3)
+            ->orderBy("pin", "DESC")
+            ->orderBy("created_at", "DESC")
+            ->paginate($paginate);
     }
 
     public function uploadThumbnail(UploadedFile $file): string
@@ -47,7 +60,7 @@ class NewsRepository extends BaseRepository
     {
         return $this->getBuilder()
             ->where("draft", 0)
-            ->where("type_id","!=",3)
+            ->where("type_id", "!=", 3)
             ->orderBy("created_at", "DESC")
             ->orderBy("pin", "DESC")
             ->orderBy("view", "DESC")
@@ -57,7 +70,7 @@ class NewsRepository extends BaseRepository
     public function getMostNewByCreatedAt(): array|Collection
     {
         return $this->getBuilder()
-            ->where("type_id","!=",3)
+            ->where("type_id", "!=", 3)
             ->where("draft", 0)
             ->orderBy("created_at", "DESC")
             ->limit(4)->get();
@@ -71,6 +84,7 @@ class NewsRepository extends BaseRepository
             ->orderBy("pin", "DESC")
             ->limit(4)->get();
     }
+
     public function getTopBusinessNew(): array|Collection
     {
         return $this->getBuilder()
@@ -79,10 +93,11 @@ class NewsRepository extends BaseRepository
             ->orderBy("pin", "DESC")
             ->limit(4)->get();
     }
+
     public function getNewspapers(): array|Collection
     {
         return $this->getBuilder()
-            ->where("type_id",3)
+            ->where("type_id", 3)
             ->where("draft", 0)
             ->orderBy("pin", "DESC")
             ->limit(4)->get();

@@ -50,10 +50,7 @@
     </div>
     <div class="container-fluid">
         <div class="row">
-            <div class="col-lg-3 d-none d-lg-block border">
-                @include("components.top-news-2")
-            </div>
-            <div class="col-lg-9 col-12">
+            <div class="col-xl-9 col-12">
                 <div class="h2 text-main text-uppercase fw-bold">
                     {{$news->getTitle()}}
                 </div>
@@ -86,6 +83,9 @@
                         @endforeach
                     </div>
                 </div>
+            </div>
+            <div class="col-xl-3 d-none d-lg-block border">
+                @include("components.top-news-2")
             </div>
         </div>
     </div>

@@ -36,7 +36,7 @@ class NewListViewModel
                 title: $news["title"],
                 thumbnail: $news["thumbnail"],
                 description: $news['description'],
-                slug: $news["slug"]
+                slug: $news["type_id"]!=3?route("new",$news["slug"]):url($news["body"])
             ))->toArray();
     }
 
