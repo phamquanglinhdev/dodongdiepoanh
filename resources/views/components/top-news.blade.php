@@ -61,7 +61,7 @@
                                 <div class="fw-light">
                                     {{$news->getDescription()}}
                                 </div>
-                                <div class="mt-1 fw-lighter">Nguồn : {{\Illuminate\Support\Str::limit($news->getSlug())}}</div>
+                                <div class="mt-1 fw-lighter">Nguồn : {{\Illuminate\Support\Str::limit($news->getSlug(),20)}}</div>
                             </div>
                         </div>
                     </a>
