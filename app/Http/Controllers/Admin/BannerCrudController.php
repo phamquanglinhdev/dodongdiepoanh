@@ -36,7 +36,7 @@ class BannerCrudController extends CrudController
         return [
             'index' => 'Banner trang chủ,slider',
             'left_bar' => 'Banner bên trái',
-            'bottom' => 'Banner dưới'
+            'bottom' => 'Banner bên dưới'
         ];
     }
 
