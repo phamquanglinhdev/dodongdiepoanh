@@ -58,6 +58,7 @@
                 <div class="content col-lg-9 col-12">
                     {!! $news->getBody() !!}
                 </div>
+                <div class="clearfix"></div>
                 <hr>
                 <div>
 {{--                    <a href="#" class="text-reset">--}}
