@@ -22,7 +22,7 @@ class TopNewsViewModel
     {
         return $this->trendingNews->map(fn(News $news) => new TopNewsObject(
             title: $news["title"],
-            slug: $news["slug"],
+            slug: $news["type_id"] != 3 ? route("new", $news["slug"]) : url($news["body"]),
             type: $news["type_id"] != 3 ? "Tin tức" : "Báo chí",
             updated_at: $news['updated_at'],
             thumbnail: $news["thumbnail"],
@@ -37,7 +37,7 @@ class TopNewsViewModel
     {
         return $this->recentlyNews->map(fn(News $news) => new TopNewsObject(
             title: $news["title"],
-            slug: $news["slug"],
+            slug: $news["type_id"] != 3 ? route("new", $news["slug"]) : url($news["body"]),
             type: $news["type_id"] != 3 ? "Tin tức" : "Bao chí",
             updated_at: $news["updated_at"],
             thumbnail: $news["thumbnail"],
