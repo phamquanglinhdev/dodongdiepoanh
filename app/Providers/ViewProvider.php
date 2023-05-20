@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Composers\BannerHomeComposer;
 use App\Composers\FooterComposer;
+use App\Composers\MiniMenuComposer;
 use App\Composers\RightBarComposer;
 use App\Composers\TopNewComposer;
 use App\Composers\TopProductComposer;
@@ -56,5 +57,6 @@ class ViewProvider extends ServiceProvider
         View::composer("components.top-news", TopViewHomeComposer::class);
         View::composer("sites.inc.footer", FooterComposer::class);
         View::composer("components.carousel", BannerHomeComposer::class);
+        View::composer("components.mini_menu", MiniMenuComposer::class);
     }
 }

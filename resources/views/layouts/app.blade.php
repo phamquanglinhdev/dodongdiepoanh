@@ -28,6 +28,7 @@
 {!!setting("google_tag_manager_noscript")!!}
 <!-- Start your project here-->
 @include("sites.inc.navbar")
+
 @yield("content")
 <div class="py-3"></div>
 <!-- End your project here-->

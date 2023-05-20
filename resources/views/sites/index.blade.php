@@ -5,6 +5,7 @@
     Đồ đồng Điệp Oanh
 @endsection
 @section("content")
+
     @include("components.carousel")
     <div class="container-fluid">
         <div class="px-lg-5 mt-lg-5">

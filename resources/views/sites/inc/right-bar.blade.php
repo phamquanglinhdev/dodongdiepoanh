@@ -18,12 +18,7 @@
 </div>
 @push("modal")
     <!-- Button trigger modal -->
-    <div style="position: fixed;bottom: 0;left: 0" class="mt-4">
-        <button type="button" class="btn bg-main text-white d-lg-none d-md-block rounded-0 " data-mdb-toggle="modal"
-                data-mdb-target="#exampleModal">
-            <i class="fas fa-list"></i> Danh mục
-        </button>
-    </div>
+    
 
     <!-- Modal -->
     <div class="modal fade bg-white" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

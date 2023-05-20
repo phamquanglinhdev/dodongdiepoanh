@@ -8,22 +8,17 @@
     <!-- Container wrapper -->
     <div class="container">
         <!-- Toggle button -->
-        <div class="d-flex">
-            <button
-                class="navbar-toggler"
-                type="button"
-                data-mdb-toggle="collapse"
-                data-mdb-target="#navbarLeftAlignExample"
-                aria-controls="navbarLeftAlignExample"
-                aria-expanded="false"
-                aria-label="Toggle navigation"
-            >
-                <i class="fas fa-bars text-white"></i>
-            </button>
+        <div class="d-flex w-lg-auto  justify-content-between">
             <div>
                 <a class="nav-link active d-lg-none d-block`" aria-current="page" href="{{route("index")}}">
                     <img alt="logo" src="{{asset("img/logo.png")}}" style="width: 15em">
                 </a>
+            </div>
+            <div class="">
+                <button type="button" class="shadow-0 btn bg-main text-white d-lg-none d-md-block rounded-0 " data-mdb-toggle="modal"
+                        data-mdb-target="#exampleModal">
+                    <i class="fas fa-bars fa-2x"></i>
+                </button>
             </div>
         </div>
         <!-- Collapsible wrapper -->
@@ -52,9 +47,14 @@
                                     @include("sites.inc.sub-menu",["menu"=>$subMenu])
                                 @endforeach
                             </ul>
+
                         </li>
+
                     @endif
                 @endforeach
+               <li class="ml-3">
+                   @include("components.search_bar")
+               </li>
             </ul>
 
             <!-- Left links -->
@@ -64,4 +64,10 @@
     </div>
 
     <!-- Container wrapper -->
+
 </nav>
+{{--@include("sites.inc.right-bar")--}}
+<div class="d-lg-none d-block">
+    @include("components.search_bar")
+</div>
+@include("components.mini_menu")
