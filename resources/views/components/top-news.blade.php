@@ -49,7 +49,7 @@
                 @endforeach
             </div>
             <div class="d-block d-lg-none">
-                <div id="banner" class="carousel slide" data-mdb-ride="carousel">
+                <div id="normal" class="carousel slide" data-mdb-ride="carousel">
                     <div class="carousel-inner">
                         @foreach($topNewHomeViewModel->getNormalNews() as $news)
                             <div class="carousel-item @if($loop->first) active @endif">
