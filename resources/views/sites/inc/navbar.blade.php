@@ -42,12 +42,11 @@
                                data-mdb-toggle="dropdown" aria-expanded="false">
                                 {{$menu->getTitle()}}
                             </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <ul class="dropdown-menu" aria-labelledby="{{$menu->getTitle()}}">
                                 @foreach($menu->getChildren() as $subMenu)
                                     @include("sites.inc.sub-menu",["menu"=>$subMenu])
                                 @endforeach
                             </ul>
-
                         </li>
 
                     @endif
