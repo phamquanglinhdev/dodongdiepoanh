@@ -15,7 +15,8 @@
                 </a>
             </div>
             <div class="">
-                <button type="button" class="shadow-0 btn bg-main text-white d-lg-none d-md-block rounded-0 " data-mdb-toggle="modal"
+                <button type="button" class="shadow-0 btn bg-main text-white d-lg-none d-md-block rounded-0 "
+                        data-mdb-toggle="modal"
                         data-mdb-target="#exampleModal">
                     <i class="fas fa-bars fa-2x"></i>
                 </button>
@@ -37,12 +38,16 @@
                         </li>
                     @else
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-white fw-bold" href="#" id="{{$menu->getTitle()}}"
+                            <a class="nav-link dropdown-toggle text-white fw-bold"
+                               id="{{$menu->getTitle()}}"
                                role="button"
-                               data-mdb-toggle="dropdown" aria-expanded="false">
+                               onclick="showNav('sub_{{$menu->getTitle()}}')"
+                               data-mdb-toggle="dropdown"
+                               aria-expanded="false">
                                 {{$menu->getTitle()}}
                             </a>
-                            <ul class="dropdown-menu" aria-labelledby="{{$menu->getTitle()}}">
+                            <ul class="dropdown-menu" id="sub_{{$menu->getTitle()}}"
+                                aria-labelledby="{{$menu->getTitle()}}">
                                 @foreach($menu->getChildren() as $subMenu)
                                     @include("sites.inc.sub-menu",["menu"=>$subMenu])
                                 @endforeach
@@ -51,9 +56,9 @@
 
                     @endif
                 @endforeach
-               <li class="ml-3">
-                   @include("components.search_bar")
-               </li>
+                <li class="ml-3">
+                    @include("components.search_bar")
+                </li>
             </ul>
 
             <!-- Left links -->
@@ -70,3 +75,19 @@
     @include("components.search_bar")
 </div>
 @include("components.mini_menu")
+@push("page_js")
+{{--    <script>--}}
+{{--        function showNav(id) {--}}
+{{--            const uls = document.getElementsByClassName("dropdown-menu");--}}
+{{--            for (let i = 0; i < uls.length; i++) {--}}
+{{--                uls.item(i).style.display = "none"--}}
+{{--            }--}}
+{{--            const item = document.getElementById(id)--}}
+{{--            if (item.style.display === "none") {--}}
+{{--                item.style.display = "block"--}}
+{{--            } else {--}}
+{{--                item.style.display = "none"--}}
+{{--            }--}}
+{{--        }--}}
+{{--    </script>--}}
+@endpush
