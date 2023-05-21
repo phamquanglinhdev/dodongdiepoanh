@@ -3,17 +3,28 @@
     /**
     * @var ProductListViewModel $productListViewModel
     */
+    $searchMode = $productListViewModel->getCategoryId()==9999;
 @endphp
 @extends("layouts.app")
 @section("title")
-    {{$productListViewModel->getCategoryName()}}
+    @if(!$searchMode)
+        {{$productListViewModel->getCategoryName()}}
+    @else
+        Kết quả tìm kiếm {{$productListViewModel->getCategoryName()}}
+    @endif
 @endsection
 @section("content")
     <div class="container-fluid pt-5">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a class="text-main fw-bold" href="{{route("index")}}">Trang chủ</a></li>
-                <li class="breadcrumb-item active" aria-current="page">{{$productListViewModel->getCategoryName()}}</li>
+                <li class="breadcrumb-item active" aria-current="page">
+                    @if(!$searchMode)
+                        {{$productListViewModel->getCategoryName()}}
+                    @else
+                        Kết quả tìm kiếm "{{$productListViewModel->getCategoryName()}}"
+                    @endif
+                </li>
             </ol>
         </nav>
     </div>
@@ -25,7 +36,14 @@
             <div class="col-md-9 col-12">
                 <div class="row">
                     <div class=" col-lg-3 col-6 col-12 p-0 px-lg-3">
-                        <div class="text-white bg-main p-3 text-uppercase">{{$productListViewModel->getCategoryName()}}</div>
+                        <div
+                            class="text-white bg-main p-3 text-uppercase">
+                            @if(!$searchMode)
+                                {{$productListViewModel->getCategoryName()}}
+                            @else
+                                Tìm kiếm: "{{$productListViewModel->getCategoryName()}}"
+                            @endif
+                        </div>
                     </div>
                 </div>
                 <div class="row mt-2">
@@ -36,7 +54,8 @@
                                     <img src="{{url($product->getThumbnail())}}" class="card-img-top rounded-0"
                                          alt="Fissure in Sandstone"/>
                                     <div class="card-body">
-                                        <div class="card-title text-main fw-bold text-uppercase ">{{$product->getName()}}</div>
+                                        <div
+                                            class="card-title text-main fw-bold text-uppercase ">{{$product->getName()}}</div>
                                         <div class="card-text">Loại : <a href="#">{{$product->getCategoryName()}}</a>
                                         </div>
                                         <div class="card-text">Kích thước : {{$product->getSize()}}</div>

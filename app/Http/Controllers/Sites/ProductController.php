@@ -22,9 +22,9 @@ class ProductController extends Controller
     public function showProductAction($id): View
     {
         $product = $this->productRepository->getProductById($id);
-        $product->view+=1;
+        $product->view += 1;
         $product->save();
-        $productShowViewModel = new ProductShowViewModel(product:$product );
+        $productShowViewModel = new ProductShowViewModel(product: $product);
         return view("sites.product", [
             'productShowViewModel' => $productShowViewModel
         ]);
@@ -37,6 +37,19 @@ class ProductController extends Controller
         $productListViewModel = new ProductListViewModel(productsPaginate: $productCollection, categoryId: $category["id"], categoryName: $category['name']);
         return \view("sites.products", [
             'productListViewModel' => $productListViewModel
+        ]);
+    }
+
+    public function searchProductAction(Request $request): View
+    {
+        $params = $request->params??null;
+        if (!$params) {
+            return $this->listProductAction(2);
+        }
+        $productCollection = $this->productRepository->getProductSearchPagination($params);
+        $productSearchViewModel = new ProductListViewModel(productsPaginate: $productCollection, categoryId: 9999, categoryName: $params);
+        return \view("sites.products", [
+            'productListViewModel' => $productSearchViewModel
         ]);
     }
 

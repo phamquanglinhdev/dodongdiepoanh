@@ -25,6 +25,17 @@ class ProductRepository extends BaseRepository
         return $this->getBuilder()->where("category_id", $categoryId)->orderBy("created_at", "DESC")->paginate($page);
     }
 
+    public function getProductSearchPagination($params, int $page = 12): LengthAwarePaginator
+    {
+        return $this->getBuilder()->where(function (Builder $builder) use ($params) {
+            $builder
+                ->where("name", "like", "%$params%")
+                ->orWhereHas("category", function (Builder $builder) use ($params) {
+                    $builder->where("name", "like", "%$params%");
+                });
+        })->orderBy("created_at", "DESC")->paginate($page);
+    }
+
     public function getProductById($id): Builder|Model
     {
         return $this->getBuilder()->where("id", $id)->firstOrFail();

@@ -21,6 +21,7 @@ Route::namespace("sites")->group(function () {
     Route::get("/", [HomeController::class, "indexPageAction"])->name("index");
     Route::get("/san-pham/{slug?}", [ProductController::class, "showProductAction", "slug"])->name("product");
     Route::get("/danh-sach-san-pham/{category_id?}", [ProductController::class, "listProductAction", "category_id"])->name("products");
+    Route::get("/tim-kiem/{params?}", [ProductController::class, "searchProductAction", "params"])->name("products.search");
     Route::get("/tin-tuc/{news_type?}", [NewsController::class, "listNewsControllers", "news_type"])->name("news");
     Route::get("/chi-tiet-tin-tuc/{new_slug?}", [NewsController::class, "showNewsControllers", "slug"])->name("new");
     Route::get("/trang/{slug?}", [PageController::class, "index", "slug"])->name("page");
