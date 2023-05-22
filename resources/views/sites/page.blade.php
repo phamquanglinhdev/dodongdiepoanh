@@ -26,7 +26,7 @@
     </style>
 @endpush
 @section("content")
-    <div class="container-fluid pt-5">
+    <div class="container-fluid pt-lg-5 pt-1">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a class="text-main fw-bold" href="{{route("index")}}">Trang chủ</a></li>
@@ -38,9 +38,9 @@
     </div>
     <div class="container-fluid">
         <div class="row">
-{{--            <div class="col-lg-3 d-none d-lg-block border">--}}
-{{--                @include("components.top-news-2")--}}
-{{--            </div>--}}
+            {{--            <div class="col-lg-3 d-none d-lg-block border">--}}
+            {{--                @include("components.top-news-2")--}}
+            {{--            </div>--}}
             <div class="col-12">
                 <div class="h2 text-main text-uppercase fw-bold">
                     {{$page->getTitle()}}
