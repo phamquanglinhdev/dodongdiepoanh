@@ -16,7 +16,7 @@
         @endforeach
     </div>
 </div>
-@push("modal")
+@push("modal_2")
     <!-- Button trigger modal -->
     <!-- Modal -->
     <div class="modal fade bg-white" id="right-bar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

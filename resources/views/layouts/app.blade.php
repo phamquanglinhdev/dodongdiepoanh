@@ -34,6 +34,7 @@
 <!-- End your project here-->
 @include("sites.inc.footer")
 @stack("modal")
+@stack("modal_2")
 <!-- MDB -->
 <script type="text/javascript" src="{{asset("js/mdb.min.js")}}"></script>
 <!-- Custom scripts -->
