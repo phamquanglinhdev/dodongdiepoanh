@@ -53,7 +53,7 @@
                     <div class="carousel-inner">
                         @foreach($topNewHomeViewModel->getNormalNews() as $news)
                             <div class="carousel-item @if($loop->first) active @endif">
-                               <a class="text-reset" href="{{$news->getSlug()}}}">
+                               <a class="text-reset" href="{{$news->getSlug()}}">
                                    <img src="{{url($news->getThumbnail()??"/")}}" class="d-block w-100"
                                         alt="{{$news->getTitle()}}"/>
                                    <div class="fw-bold h5 text-main">
