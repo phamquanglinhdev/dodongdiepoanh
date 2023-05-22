@@ -56,8 +56,8 @@
                         <div class="form-group">
                             <label for="type_id">Loại tin tức</label>
                             <select class="form-control" name="type_id" id="type_id">
-                                <option value="0">Tin tức thường</option>
-                                <option value="1">Tin tức doanh nghiệp</option>
+                                <option value="0">Tin tức doanh nghiệp</option>
+                                <option value="1">Kiến thức đồ đồng</option>
                             </select>
                         </div>
                         <div class="form-check">

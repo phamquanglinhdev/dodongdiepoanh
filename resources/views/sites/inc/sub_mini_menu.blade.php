@@ -11,8 +11,30 @@
         </span>
     </a>
 @else
-    @foreach($menuObject->getChildren() as $sub)
+    <a
+        class="dropdown-toggle me-1 px-1 text-white"
+        href="#"
+        role="button"
+        id="{{$menuObject->getTitle()}}"
+        data-mdb-toggle="dropdown"
+        aria-expanded="false"
+    >
+       <span class="small text-white">
+            {{$menuObject->getTitle()}}
+        </span>
+    </a>
 
-        @include("sites.inc.sub_mini_menu",["menuObject"=>$sub])
-    @endforeach
+    <ul class="dropdown-menu" aria-labelledby="{{$menuObject->getTitle()}}">
+        @foreach($menuObject->getChildren() as $sub)
+            <li>
+                @include("sites.inc.sub_mini_menu",["menuObject"=>$sub])
+            </li>
+        @endforeach
+    </ul>
+
 @endif
+<style>
+    .dropdown-menu li a span{
+        color: black!important;
+    }
+</style>

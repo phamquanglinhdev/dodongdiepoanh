@@ -19,10 +19,22 @@ class NewsController extends Controller
 
     public function listNewsControllers($type = 0): View
     {
+        $typeName = "";
+        switch ($type) {
+            case 0:
+                $typeName = "Tin tức doanh nghiệp";
+                break;
+            case 1:
+                $typeName = "Kiến thức đồ đồng";
+                break;
+            case 3:
+                $typeName = "Báo chí nói gì về Đồ đồng Điệp Oanh";
+                break;
+        }
         return \view("sites.news", [
             'newsListViewModel' => new NewListViewModel(
                 news: $this->newsRepository->getNewsByType($type, 8),
-                new_type_name: $type != 3 ? "Tin tức" : "Báo chí nói gì về Đồ đồng Điệp Oanh"
+                new_type_name: $typeName
             )
         ]);
     }

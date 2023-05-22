@@ -34,17 +34,9 @@ class NewsRepository extends BaseRepository
 
     public function getNewsByType($type = 0, $paginate = 15): LengthAwarePaginator
     {
-        if ($type == 3) {
-            return $this->getBuilder()
-                ->where("draft", 0)
-                ->where("type_id", 3)
-                ->orderBy("pin", "DESC")
-                ->orderBy("created_at", "DESC")
-                ->paginate($paginate);
-        }
         return $this->getBuilder()
             ->where("draft", 0)
-            ->where("type_id", "!=", 3)
+            ->where("type_id", $type)
             ->orderBy("pin", "DESC")
             ->orderBy("created_at", "DESC")
             ->paginate($paginate);

@@ -51,6 +51,7 @@ class NewsCrudController extends CrudController
                 $this->crud->query->where("author_id", backpack_user()->id);
             }
         }
+        $this->crud->query->where("type_id", "!=", 3);
     }
 
     public
@@ -67,8 +68,8 @@ class NewsCrudController extends CrudController
     function type(): array
     {
         return [
-            0 => 'Tin tức thường',
-            1 => 'Tin tức doanh nghiệp'
+            0 => 'Tin tức doanh nghiệp',
+            1 => 'Kiến thức đồ đồng'
         ];
     }
 

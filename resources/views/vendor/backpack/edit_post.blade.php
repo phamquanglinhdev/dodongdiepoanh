@@ -59,8 +59,9 @@
                         <div class="form-group">
                             <label for="type_id">Loại tin tức</label>
                             <select class="form-control" name="type_id" id="type_id">
-                                <option value="0" {{$old->getTypeId()==0?"selected":""}}>Tin tức thường</option>
-                                <option value="1" {{$old->getTypeId()==1?"selected":""}}>Tin tức doanh nghiệp</option>
+                                <option value="0" {{$old->getTypeId()==0?"selected":""}}>Tin tức doanh nghiệp</option>
+                                <option value="1" {{$old->getTypeId()==1?"selected":""}}>Kiến thức đồ đồng</option>
+
                             </select>
                         </div>
                         <div class="form-check">
