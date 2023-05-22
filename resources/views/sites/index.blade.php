@@ -9,7 +9,7 @@
     <div class="container-fluid">
         <div class="px-lg-5 mt-lg-5">
             <div class="row">
-                <div class="col-lg-3 d-lg-block d-none">
+                <div class="col-lg-3 p-3 d-lg-block d-none">
                     @include("sites.inc.right-bar")
                 </div>
                 <div class="col-lg-9 col-12">
