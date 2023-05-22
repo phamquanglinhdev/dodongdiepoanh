@@ -55,6 +55,7 @@ class ViewProvider extends ServiceProvider
         View::composer("components.top-product", TopProductComposer::class);
         View::composer("components.top-news-2", TopNewComposer::class);
         View::composer("components.top-news", TopViewHomeComposer::class);
+        View::composer("components.top-news-box", TopViewHomeComposer::class);
         View::composer("sites.inc.footer", FooterComposer::class);
         View::composer("components.carousel", BannerHomeComposer::class);
         View::composer("components.mini_menu", MiniMenuComposer::class);

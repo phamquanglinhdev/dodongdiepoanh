@@ -22,14 +22,15 @@
                 <!-- Grid column -->
 
                 <!-- Grid column -->
-                <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+                <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4 d-lg-block d-none">
                     <!-- Links -->
                     <h6 class="text-uppercase fw-bold mb-4">
                         Về chúng tôi
                     </h6>
                     @foreach($footerViewModel->getAboutMe() as $about_me)
                         <p>
-                            <a href="{{url("trang/".$about_me->getUrl())}}" class="text-reset">{{$about_me->getTitle()}}</a>
+                            <a href="{{url("trang/".$about_me->getUrl())}}"
+                               class="text-reset">{{$about_me->getTitle()}}</a>
                         </p>
                     @endforeach
                 </div>
@@ -71,7 +72,7 @@
     <!-- Copyright -->
     <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
         © {{\Illuminate\Support\Carbon::now()->year}} Copyright:
-        <a class="text-reset fw-bold" href="https://mdbootstrap.com/">Dodongdiepoanh.com</a>
+        <a class="text-reset fw-bold" href="{{route("index")}}">Dodongdiepoanh.com</a>
     </div>
     <!-- Copyright -->
 </footer>

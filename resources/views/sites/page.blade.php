@@ -50,7 +50,7 @@
                     {!! $page->getBody() !!}
                 </div>
                 <hr>
-                @include("components.top-news")
+                @include("components.top-news-box")
             </div>
         </div>
     </div>
