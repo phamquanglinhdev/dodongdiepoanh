@@ -24,7 +24,7 @@
             <div class="">
                 <button type="button" class="shadow-0 btn bg-main text-white d-lg-none d-md-block rounded-0 "
                         data-mdb-toggle="modal"
-                        data-mdb-target="#exampleModal">
+                        data-mdb-target="#right-bar">
                     <i class="fas fa-bars fa-2x"></i>
                 </button>
             </div>
