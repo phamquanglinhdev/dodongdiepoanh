@@ -59,7 +59,7 @@
         </div>
     </div>
     <div class="container-fluid d-none">
-        @include("components.top-news-2")
+        @include("sites.inc.right-bar")
     </div>
 @endsection
 @push("page_js")
