@@ -56,6 +56,7 @@
             </div>
             <div class="col-lg-3 d-lg-block d-none">
                 @include("components.top-news-2")
+                @include("sites.inc.right-bar")
             </div>
         </div>
     </div>
