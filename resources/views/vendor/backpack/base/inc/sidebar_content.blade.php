@@ -40,3 +40,4 @@
 
 <li class='nav-item'><a class='nav-link' href='{{ backpack_url('backup') }}'><i class='nav-icon la la-hdd-o'></i> Backups</a></li>
 <li class="nav-item"><a class="nav-link" href="{{ backpack_url('newspaper') }}"><i class="nav-icon la la-question"></i> Newspapers</a></li>
+<li class="nav-item"><a class="nav-link" href="{{ backpack_url('project') }}"><i class="nav-icon la la-question"></i> Projects</a></li>

@@ -25,5 +25,6 @@ Route::namespace("sites")->group(function () {
     Route::get("/tin-tuc/{news_type?}", [NewsController::class, "listNewsControllers", "news_type"])->name("news");
     Route::get("/chi-tiet-tin-tuc/{new_slug?}", [NewsController::class, "showNewsControllers", "slug"])->name("new");
     Route::get("/trang/{slug?}", [PageController::class, "index", "slug"])->name("page");
+    Route::get("/cong-trinh-tieu-bieu", [HomeController::class, "projectPageAction"])->name("project");
 });
 

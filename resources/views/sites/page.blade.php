@@ -54,5 +54,8 @@
             </div>
         </div>
     </div>
+    <div class="container-fluid d-none">
+        @include("components.top-news-2")
+    </div>
 @endsection
 
