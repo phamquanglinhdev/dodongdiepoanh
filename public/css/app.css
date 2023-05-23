@@ -39,3 +39,6 @@
 .disable-after:after{
     content: none!important;
 }
+figure{
+    text-align: center;
+}
