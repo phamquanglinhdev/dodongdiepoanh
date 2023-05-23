@@ -33,7 +33,9 @@
             }
 
         }
-
+        .image_resized img{
+            width: 100%!important;
+        }
 
 
 
