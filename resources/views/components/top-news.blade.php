@@ -24,27 +24,26 @@
             <div class="d-lg-block d-none">
                 @foreach($topNewHomeViewModel->getNormalNews() as $news)
                     <div class="new border-bottom mb-2">
-
-                        <div class="row">
-
-                            <div class="col-3">
-                                <a href="{{$news->getSlug()}}" class="text-reset">
-                                    <img src="{{url($news->getThumbnail())}}" class="w-100">
-                                </a>
+                        <a class="text-reset" href="{{$news->getSlug()}}">
+                            <div class="row">
+                                <div class="col-3">
+                                    <a href="{{$news->getSlug()}}" class="text-reset">
+                                        <img src="{{url($news->getThumbnail())}}" class="w-100">
+                                    </a>
+                                </div>
+                                <div class="col-9">
+                                    <div class="fw-bold h5 text-main">
+                                        {{$news->getTitle()}}
+                                    </div>
+                                    <div class="fw-light">
+                                        {{$news->getDescription()}}
+                                    </div>
+                                    <div class="mt-1 fw-lighter">
+                                        <a class="text-main" href="{{$news->getSlug()}}">Xem chi tiết</a>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="col-9">
-                                <div class="fw-bold h5 text-main">
-                                    {{$news->getTitle()}}
-                                </div>
-                                <div class="fw-light">
-                                    {{$news->getDescription()}}
-                                </div>
-                                <div class="mt-1 fw-lighter">
-                                    <a class="text-main" href="{{$news->getSlug()}}">Xem chi tiết</a>
-                                </div>
-                            </div>
-                        </div>
-
+                        </a>
                     </div>
                 @endforeach
             </div>
@@ -53,19 +52,19 @@
                     <div class="carousel-inner">
                         @foreach($topNewHomeViewModel->getNormalNews() as $news)
                             <div class="carousel-item @if($loop->first) active @endif">
-                               <a class="text-reset" href="{{$news->getSlug()}}">
-                                   <img src="{{url($news->getThumbnail()??"/")}}" class="d-block w-100"
-                                        alt="{{$news->getTitle()}}"/>
-                                   <div class="fw-bold h5 text-main">
-                                       {{$news->getTitle()}}
-                                   </div>
-                                   <div class="fw-light">
-                                       {{$news->getDescription()}}
-                                   </div>
-                                   <div class="mt-1 fw-lighter">
-                                       <a class="text-main" href="{{$news->getSlug()}}">Xem chi tiết</a>
-                                   </div>
-                               </a>
+                                <a class="text-reset" href="{{$news->getSlug()}}">
+                                    <img src="{{url($news->getThumbnail()??"/")}}" class="d-block w-100"
+                                         alt="{{$news->getTitle()}}"/>
+                                    <div class="fw-bold h5 text-main">
+                                        {{$news->getTitle()}}
+                                    </div>
+                                    <div class="fw-light">
+                                        {{$news->getDescription()}}
+                                    </div>
+                                    <div class="mt-1 fw-lighter">
+                                        <a class="text-main" href="{{$news->getSlug()}}">Xem chi tiết</a>
+                                    </div>
+                                </a>
                             </div>
                         @endforeach
                     </div>

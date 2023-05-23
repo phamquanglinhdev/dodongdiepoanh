@@ -25,16 +25,18 @@
                 <div class="row">
                     @foreach($topNewHomeViewModel->getNormalNews() as $news)
                         <div class="col-md-3">
-                            <div class="card h-100">
-                                <div class="ratio ratio-4x3">
-                                    <img src="{{url($news->getThumbnail())}}" class="card-img-top" alt="Fissure in Sandstone"/>
+                            <a href="{{$news->getSlug()}}">
+                                <div class="card h-100">
+                                    <div class="ratio ratio-4x3">
+                                        <img src="{{url($news->getThumbnail())}}" class="card-img-top" alt="Fissure in Sandstone"/>
+                                    </div>
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{$news->getTitle()}}</h5>
+                                        <p class="card-text">{{$news->getDescription()}}</p>
+                                        <a href="{{$news->getSlug()}}" class="">Xem chi tiết</a>
+                                    </div>
                                 </div>
-                                <div class="card-body">
-                                    <h5 class="card-title">{{$news->getTitle()}}</h5>
-                                    <p class="card-text">{{$news->getDescription()}}</p>
-                                    <a href="{{$news->getSlug()}}" class="">Xem chi tiết</a>
-                                </div>
-                            </div>
+                            </a>
                         </div>
                     @endforeach
                 </div>
