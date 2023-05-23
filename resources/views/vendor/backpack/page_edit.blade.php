@@ -99,21 +99,6 @@
                             {model: 'heading6', view: 'h6', title: 'Heading 6', class: 'ck-heading_heading6'}
                         ]
                     },
-                    placeholder: 'Chỉnh sửa nội dung bài viết tại đây',
-                    fontSize: {
-                        options: [10, 12, 14, 'default', 18, 20, 22],
-                        supportAllValues: true
-                    },
-                    htmlSupport: {
-                        allow: [
-                            {
-                                name: /.*/,
-                                attributes: true,
-                                classes: true,
-                                styles: true
-                            }
-                        ]
-                    },
                     fontFamily: {
                         options: [
                             'default',
@@ -127,6 +112,21 @@
                             'Verdana, Geneva, sans-serif'
                         ],
                         supportAllValues: true
+                    },
+                    placeholder: 'Chỉnh sửa nội dung bài viết tại đây',
+                    fontSize: {
+                        options: [10, 12, 14, 'default', 18, 20, 22, 30, 40, 50, 60],
+                        supportAllValues: true
+                    },
+                    htmlSupport: {
+                        allow: [
+                            {
+                                name: /.*/,
+                                attributes: true,
+                                classes: true,
+                                styles: true
+                            }
+                        ]
                     },
                     htmlEmbed: {
                         showPreviews: true
@@ -145,7 +145,7 @@
                         'WProofreader',
                         // Careful, with the Mathtype plugin CKEditor will not load when loading this sample
                         // from a local file system (file://) - load this site via HTTP server if you enable MathType.
-                        'MathType',
+                        // 'MathType',
                         // The following features are part of the Productivity Pack and require additional license.
                         'SlashCommand',
                         'Template',

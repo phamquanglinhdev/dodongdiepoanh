@@ -170,7 +170,7 @@
                     },
                     placeholder: 'Chỉnh sửa nội dung bài viết tại đây',
                     fontSize: {
-                        options: [10, 12, 14, 'default', 18, 20, 22],
+                        options: [10, 12, 14, 'default', 18, 20, 22, 30, 40, 50, 60],
                         supportAllValues: true
                     },
                     htmlSupport: {
@@ -200,7 +200,7 @@
                         'WProofreader',
                         // Careful, with the Mathtype plugin CKEditor will not load when loading this sample
                         // from a local file system (file://) - load this site via HTTP server if you enable MathType.
-                        'MathType',
+                        // 'MathType',
                         // The following features are part of the Productivity Pack and require additional license.
                         'SlashCommand',
                         'Template',

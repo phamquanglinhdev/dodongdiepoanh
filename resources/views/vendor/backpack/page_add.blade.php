@@ -90,9 +90,23 @@
                             {model: 'heading6', view: 'h6', title: 'Heading 6', class: 'ck-heading_heading6'}
                         ]
                     },
+                    fontFamily: {
+                        options: [
+                            'default',
+                            'Arial, Helvetica, sans-serif',
+                            'Courier New, Courier, monospace',
+                            'Georgia, serif',
+                            'Lucida Sans Unicode, Lucida Grande, sans-serif',
+                            'Tahoma, Geneva, sans-serif',
+                            'Times New Roman, Times, serif',
+                            'Trebuchet MS, Helvetica, sans-serif',
+                            'Verdana, Geneva, sans-serif'
+                        ],
+                        supportAllValues: true
+                    },
                     placeholder: 'Chỉnh sửa nội dung bài viết tại đây',
                     fontSize: {
-                        options: [10, 12, 14, 'default', 18, 20, 22],
+                        options: [10, 12, 14, 'default', 18, 20, 22, 30, 40, 50, 60],
                         supportAllValues: true
                     },
                     htmlSupport: {
@@ -108,20 +122,6 @@
                     htmlEmbed: {
                         showPreviews: true
                     },
-                    fontFamily: {
-                        options: [
-                            'default',
-                            'Arial, Helvetica, sans-serif',
-                            'Courier New, Courier, monospace',
-                            'Georgia, serif',
-                            'Lucida Sans Unicode, Lucida Grande, sans-serif',
-                            'Tahoma, Geneva, sans-serif',
-                            'Times New Roman, Times, serif',
-                            'Trebuchet MS, Helvetica, sans-serif',
-                            'Verdana, Geneva, sans-serif'
-                        ],
-                        supportAllValues: true
-                    },
                     removePlugins: [
                         // 'EasyImage',
                         'RealTimeCollaborativeComments',
@@ -136,7 +136,7 @@
                         'WProofreader',
                         // Careful, with the Mathtype plugin CKEditor will not load when loading this sample
                         // from a local file system (file://) - load this site via HTTP server if you enable MathType.
-                        'MathType',
+                        // 'MathType',
                         // The following features are part of the Productivity Pack and require additional license.
                         'SlashCommand',
                         'Template',
