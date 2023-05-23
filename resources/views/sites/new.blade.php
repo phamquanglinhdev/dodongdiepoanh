@@ -88,6 +88,9 @@
             </div>
             <div class="col-xl-3 d-none d-lg-block border">
                 @include("components.top-news-2")
+                <div class="d-none">
+                    @include("sites.inc.right-bar")
+                </div>
             </div>
         </div>
     </div>
