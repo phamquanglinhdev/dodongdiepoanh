@@ -55,7 +55,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-xl-9 col-12">
-                <div class="h2 text-main text-uppercase fw-bold">
+                <div class="h2 text-dark text-uppercase fw-bold">
                     {{$news->getTitle()}}
                 </div>
                 <hr>
