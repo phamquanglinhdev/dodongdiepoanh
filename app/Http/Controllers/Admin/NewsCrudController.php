@@ -110,15 +110,13 @@ class NewsCrudController extends CrudController
     function setupCreateOperation(): void
     {
         CRUD::setValidation(NewsRequest::class);
-
-        CRUD::field('body');
-        CRUD::field('body_2');
-        CRUD::field('description');
-        CRUD::field('draft');
-        CRUD::field('status');
-        CRUD::field('thumbnail');
-        CRUD::field('title');
-        CRUD::field('type_id');
+        CRUD::field('title')->label("Tiêu đề");
+        CRUD::field('description')->label("Mô tả ngắn");
+        CRUD::field('body')->type("adonis-editor");
+        CRUD::field('draft')->type("switch")->label("Thư mục nháp");
+        CRUD::field('status')->label("Trạng thái")->type("select_from_array")->options($this->status());
+        CRUD::field('thumbnail')->type("image")->crop(true)->aspect_ratio(16 / 9);
+        CRUD::field('type_id')->label("Trạng thái")->type("select_from_array")->options($this->type());;
 
         /**
          * Fields can be defined using the fluent syntax or array syntax:
@@ -139,99 +137,99 @@ class NewsCrudController extends CrudController
         $this->setupCreateOperation();
     }
 
-    public
-    function create(TagRepository $tagRepository): View
-    {
-        return \view("vendor.backpack.add_post", [
-            'newsAddViewModel' => new NewsAddViewModel($tagRepository->listAll())
-        ]);
-    }
-
-    public function edit($id, NewsRepository $newsRepository, TagRepository $tagRepository): View
-    {
-        return \view("vendor.backpack.edit_post", [
-            'newsEditViewModel' => new NewsEditViewModel(news: $newsRepository->getNewById($id), tags: $tagRepository->listAll())
-        ]);
-    }
-
-    public
-    function store(NewsRequest $request, NewsRepository $newsRepository, TagRepository $tagRepository): RedirectResponse
-    {
-        $tagIds = [];
-        $collection = $request->except("_token");
-
-        if (isset($collection["tags"])) {
-            foreach ($collection["tags"] as $tagName) {
-                $tag = $tagRepository->findByName($tagName);
-                if ($tag) {
-                    $tagIds[] = $tag->id;
-                } else {
-                    /**
-                     * @var Model|Builder $tagCreate
-                     */
-                    $tagCreate = $tagRepository->getBuilder()->create(["name" => $tagName]);
-                    $tagIds[] = $tagCreate->id;
-                }
-            }
-        }
-        $newStoreObject = new NewsStoreObject(
-            author_id: backpack_user()->id,
-            title: $collection["title"],
-            body: $collection["body"],
-            type_id: $collection["type_id"] ?? 0,
-            draft: isset($collection["draft"]) ? 1 : 0,
-            pin: isset($collection['pin']) ? 1 : 0,
-            thumbnail: $collection['thumbnail'],
-            description: $collection["description"]
-        );
-        /**
-         * @var News $newsModel
-         */
-        $newsModel = $newsRepository->create($newStoreObject->toArray());
-        if ($collection["thumbnail"] instanceof UploadedFile) {
-            $newsModel->thumbnail = $newsRepository->uploadThumbnail($collection["thumbnail"]);
-            $newsModel->save();
-        }
-        $newsModel->Tags()->attach($tagIds);
-        return redirect("admin/news");
-    }
-
-    public function update(Request $request, NewsRepository $newsRepository, TagRepository $tagRepository, int $id): RedirectResponse
-    {
-        /**
-         * @var News $newsModel
-         */
-        $newsModel = $newsRepository->getNewById($id);
-
-        $newUpdateObject = $request->except("_token", "_method");
-        $newsModel->title = $newUpdateObject["title"] ?? $newsModel->title;
-        $newsModel->body = $newUpdateObject["body"] ?? $newsModel->body;
-        $newsModel->pin = isset($newUpdateObject["pin"]) ? 1 : 0;
-        $newsModel->draft = isset($newUpdateObject["draft"]) ? 1 : 0;
-        $newsModel->type_id = $newUpdateObject["type_id"] ?? $newsModel->type_id;
-        $newsModel->description = $newUpdateObject["description"] ?? $newsModel->description;
-        if (isset($newUpdateObject["thumbnail"])) {
-            if ($newUpdateObject["thumbnail"] instanceof UploadedFile) {
-                $newsModel->thumbnail = $newsRepository->uploadThumbnail($newUpdateObject["thumbnail"]);
-            }
-        }
-        $tagIds = [];
-        if (isset($newUpdateObject["tags"])) {
-            foreach ($newUpdateObject["tags"] as $tagName) {
-                $tag = $tagRepository->findByName($tagName);
-                if ($tag) {
-                    $tagIds[] = $tag->id;
-                } else {
-                    /**
-                     * @var Model|Builder $tagCreate
-                     */
-                    $tagCreate = $tagRepository->getBuilder()->create(["name" => $tagName]);
-                    $tagIds[] = $tagCreate->id;
-                }
-            }
-        }
-        $newsModel->Tags()->sync($tagIds);
-        $newsModel->save();
-        return redirect("admin/news");
-    }
+//    public
+//    function create(TagRepository $tagRepository): View
+//    {
+//        return \view("vendor.backpack.add_post", [
+//            'newsAddViewModel' => new NewsAddViewModel($tagRepository->listAll())
+//        ]);
+//    }
+//
+//    public function edit($id, NewsRepository $newsRepository, TagRepository $tagRepository): View
+//    {
+//        return \view("vendor.backpack.edit_post", [
+//            'newsEditViewModel' => new NewsEditViewModel(news: $newsRepository->getNewById($id), tags: $tagRepository->listAll())
+//        ]);
+//    }
+//
+//    public
+//    function store(NewsRequest $request, NewsRepository $newsRepository, TagRepository $tagRepository): RedirectResponse
+//    {
+//        $tagIds = [];
+//        $collection = $request->except("_token");
+//
+//        if (isset($collection["tags"])) {
+//            foreach ($collection["tags"] as $tagName) {
+//                $tag = $tagRepository->findByName($tagName);
+//                if ($tag) {
+//                    $tagIds[] = $tag->id;
+//                } else {
+//                    /**
+//                     * @var Model|Builder $tagCreate
+//                     */
+//                    $tagCreate = $tagRepository->getBuilder()->create(["name" => $tagName]);
+//                    $tagIds[] = $tagCreate->id;
+//                }
+//            }
+//        }
+//        $newStoreObject = new NewsStoreObject(
+//            author_id: backpack_user()->id,
+//            title: $collection["title"],
+//            body: $collection["body"],
+//            type_id: $collection["type_id"] ?? 0,
+//            draft: isset($collection["draft"]) ? 1 : 0,
+//            pin: isset($collection['pin']) ? 1 : 0,
+//            thumbnail: $collection['thumbnail'],
+//            description: $collection["description"]
+//        );
+//        /**
+//         * @var News $newsModel
+//         */
+//        $newsModel = $newsRepository->create($newStoreObject->toArray());
+//        if ($collection["thumbnail"] instanceof UploadedFile) {
+//            $newsModel->thumbnail = $newsRepository->uploadThumbnail($collection["thumbnail"]);
+//            $newsModel->save();
+//        }
+//        $newsModel->Tags()->attach($tagIds);
+//        return redirect("admin/news");
+//    }
+//
+//    public function update(Request $request, NewsRepository $newsRepository, TagRepository $tagRepository, int $id): RedirectResponse
+//    {
+//        /**
+//         * @var News $newsModel
+//         */
+//        $newsModel = $newsRepository->getNewById($id);
+//
+//        $newUpdateObject = $request->except("_token", "_method");
+//        $newsModel->title = $newUpdateObject["title"] ?? $newsModel->title;
+//        $newsModel->body = $newUpdateObject["body"] ?? $newsModel->body;
+//        $newsModel->pin = isset($newUpdateObject["pin"]) ? 1 : 0;
+//        $newsModel->draft = isset($newUpdateObject["draft"]) ? 1 : 0;
+//        $newsModel->type_id = $newUpdateObject["type_id"] ?? $newsModel->type_id;
+//        $newsModel->description = $newUpdateObject["description"] ?? $newsModel->description;
+//        if (isset($newUpdateObject["thumbnail"])) {
+//            if ($newUpdateObject["thumbnail"] instanceof UploadedFile) {
+//                $newsModel->thumbnail = $newsRepository->uploadThumbnail($newUpdateObject["thumbnail"]);
+//            }
+//        }
+//        $tagIds = [];
+//        if (isset($newUpdateObject["tags"])) {
+//            foreach ($newUpdateObject["tags"] as $tagName) {
+//                $tag = $tagRepository->findByName($tagName);
+//                if ($tag) {
+//                    $tagIds[] = $tag->id;
+//                } else {
+//                    /**
+//                     * @var Model|Builder $tagCreate
+//                     */
+//                    $tagCreate = $tagRepository->getBuilder()->create(["name" => $tagName]);
+//                    $tagIds[] = $tagCreate->id;
+//                }
+//            }
+//        }
+//        $newsModel->Tags()->sync($tagIds);
+//        $newsModel->save();
+//        return redirect("admin/news");
+//    }
 }

@@ -73,8 +73,17 @@ class PageCrudController extends CrudController
     protected function setupCreateOperation(): void
     {
         CRUD::setValidation(PageRequest::class);
+        CRUD::addField([
+            'name' => 'title',
+            'type' => 'text',
+            'label' => 'Tiêu đề',
+        ]);
 
-
+        CRUD::addField([
+            'name' => 'body',
+            'type' => 'adonis-editor',
+            'label' => 'Nội dung',
+        ]);
         /**
          * Fields can be defined using the fluent syntax or array syntax:
          * - CRUD::field('price')->type('number');
@@ -93,47 +102,47 @@ class PageCrudController extends CrudController
         $this->setupCreateOperation();
     }
 
-    public function create(): View
-    {
-        if (!permission("manager")) {
-            abort(403);
-        }
-        return view("vendor.backpack.page_add");
-    }
-
-    public function edit($id, PageRepository $pageRepository): View
-    {
-        if (!permission("manager")) {
-            abort(403);
-        }
-        return view("vendor.backpack.page_edit", [
-            'pageEditViewModel' => new PageEditViewModel($pageRepository->getById($id))
-        ]);
-    }
-
-    public function store(Request $request, PageRepository $pageRepository): RedirectResponse
-    {
-        if (!permission("manager")) {
-            abort(403);
-        }
-        $attribute = $request->except("_token");
-        $object = new PageStoreObject($attribute["title"], $attribute['body']);
-        $pageRepository->createPage($object->toArray());
-        return redirect("/admin/page");
-    }
-
-    public function update(Request $request, $id, PageRepository $pageRepository): RedirectResponse
-    {
-        /**
-         * @var Page $page
-         */
-        $collection = $request->except("_token", "_method");
-        $page = $pageRepository->getById($id);
-        $page->title = $collection['title'];
-        $page->body = $collection["body"] ?? $page->body;
-        $page->save();
-        return redirect("/admin/page");
-    }
+//    public function create(): View
+//    {
+//        if (!permission("manager")) {
+//            abort(403);
+//        }
+//        return view("vendor.backpack.page_add");
+//    }
+//
+//    public function edit($id, PageRepository $pageRepository): View
+//    {
+//        if (!permission("manager")) {
+//            abort(403);
+//        }
+//        return view("vendor.backpack.page_edit", [
+//            'pageEditViewModel' => new PageEditViewModel($pageRepository->getById($id))
+//        ]);
+//    }
+//
+//    public function store(Request $request, PageRepository $pageRepository): RedirectResponse
+//    {
+//        if (!permission("manager")) {
+//            abort(403);
+//        }
+//        $attribute = $request->except("_token");
+//        $object = new PageStoreObject($attribute["title"], $attribute['body']);
+//        $pageRepository->createPage($object->toArray());
+//        return redirect("/admin/page");
+//    }
+//
+//    public function update(Request $request, $id, PageRepository $pageRepository): RedirectResponse
+//    {
+//        /**
+//         * @var Page $page
+//         */
+//        $collection = $request->except("_token", "_method");
+//        $page = $pageRepository->getById($id);
+//        $page->title = $collection['title'];
+//        $page->body = $collection["body"] ?? $page->body;
+//        $page->save();
+//        return redirect("/admin/page");
+//    }
 
     public function area(PageRepository $pageRepository, AreaRepository $areaRepository): View
     {
