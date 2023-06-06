@@ -20,6 +20,11 @@ class ProductRepository extends BaseRepository
         return $this->getBuilder()->orderBy("view", "DESC")->limit($limit)->get();
     }
 
+    public function getListProductsOrderByPromote(int $limit = 8): Collection|array
+    {
+        return $this->getBuilder()->where("promote", 1)->orderBy("view", "DESC")->limit($limit)->get();
+    }
+
     public function getProductPagination($categoryId, int $page = 12): LengthAwarePaginator
     {
         return $this->getBuilder()->where("category_id", $categoryId)->orderBy("created_at", "DESC")->paginate($page);

@@ -26,7 +26,7 @@ class TopProductComposer
         /**
          * @var Category $category
          */
-        $topProduct["sản phẩm nổi bật"] = $this->productRepository->getListProductsOrderByView();
+        $topProduct["sản phẩm nổi bật"] = $this->productRepository->getListProductsOrderByPromote();
         $pins = $this->settingRepository->getByName("pin_category_ids");
         if ($pins['value']) {
             $pins = json_decode($pins["value"]);

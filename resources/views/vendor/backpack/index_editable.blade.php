@@ -21,7 +21,7 @@
                         @include("sites.inc.right-bar")
                     </div>
                     <div class="col-lg-9 col-12">
-                        <a href="#" class="btn btn-primary rounded-0 text-white">Chỉnh sản phẩm nổi bật</a>
+                        <a href="{{url("admin/top-product/1/edit")}}" class="btn btn-primary rounded-0 text-white">Chỉnh sản phẩm nổi bật</a>
                         @include("components.top-product")
                     </div>
                 </div>
