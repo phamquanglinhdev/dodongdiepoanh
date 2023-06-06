@@ -30,8 +30,9 @@ Route::group([
     Route::post("/page/area/remove", [PageCrudController::class, "removeArea"])->name("page.area.remove");
     Route::crud('banner', 'BannerCrudController');
 //    Route::crud('setting', 'SettingCrudController');
-    Route::get('setting', [SettingCrudController::class,"index"])->name("setting.index");
-    Route::put('setting/updates', [SettingCrudController::class,"updates"])->name("setting.updates");
+    Route::get('setting', [SettingCrudController::class, "index"])->name("setting.index");
+    Route::get('setting/custom', [SettingCrudController::class, "home_custom"])->name("custom.index");
+    Route::put('setting/updates', [SettingCrudController::class, "updates"])->name("setting.updates");
     Route::crud('tag', 'TagCrudController');
     Route::crud('newspaper', 'NewspaperCrudController');
     Route::crud('project', 'ProjectCrudController');

@@ -116,4 +116,9 @@ class SettingCrudController extends CrudController
         }
         return redirect()->back()->with("success", "Thành công");
     }
+
+    public function home_custom()
+    {
+        return \view("vendor.backpack.index_edit");
+    }
 }
