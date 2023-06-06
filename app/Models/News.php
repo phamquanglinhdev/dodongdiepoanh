@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Str;
 
 /**
  * @property string|UploadedFile $thumbnail
@@ -47,6 +48,10 @@ class News extends Model
     | FUNCTIONS
     |--------------------------------------------------------------------------
     */
+    public function setSlugAttribute(): void
+    {
+        $this->attributes["slug"] = Str::slug($this->title);
+    }
 
     /*
     |--------------------------------------------------------------------------

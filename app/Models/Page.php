@@ -5,6 +5,7 @@ namespace App\Models;
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 /**
  * @property string $title
@@ -34,7 +35,10 @@ class Page extends Model
     | FUNCTIONS
     |--------------------------------------------------------------------------
     */
-
+    public function setSlugAttribute(): void
+    {
+        $this->attributes["slug"] = Str::slug($this->title);
+    }
     /*
     |--------------------------------------------------------------------------
     | RELATIONS
