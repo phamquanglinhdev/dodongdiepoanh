@@ -19,7 +19,8 @@
     <script>
         tinymce.init({
             selector: '#{{$field['name']}}',
-            height : "100vh",
+            height: "100vh",
+            resize: 'both',
             image_title: true,
             /* enable automatic uploads of images represented by blob or data URIs*/
             automatic_uploads: true,
@@ -54,13 +55,13 @@
                           necessary, as we are looking to handle it internally.
                         */
                         var id = 'blobid' + (new Date()).getTime();
-                        var blobCache =  tinymce.activeEditor.editorUpload.blobCache;
+                        var blobCache = tinymce.activeEditor.editorUpload.blobCache;
                         var base64 = reader.result.split(',')[1];
                         var blobInfo = blobCache.create(id, file, base64);
                         blobCache.add(blobInfo);
 
                         /* call the callback and populate the Title field with the file name */
-                        cb(blobInfo.blobUri(), { title: file.name });
+                        cb(blobInfo.blobUri(), {title: file.name});
                     };
                     reader.readAsDataURL(file);
                 };

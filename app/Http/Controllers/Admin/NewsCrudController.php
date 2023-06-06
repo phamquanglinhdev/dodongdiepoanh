@@ -43,6 +43,7 @@ class NewsCrudController extends CrudController
         CRUD::setModel(\App\Models\News::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/news');
         CRUD::setEntityNameStrings('Tin tức', 'DS Tin tức');
+        $this->crud->setCreateContentClass('col-md-12 bold-labels');
         if (!permission("author")) {
             $this->crud->denyAccess(["list", "create", "update", "delete"]);
         }
@@ -109,13 +110,25 @@ class NewsCrudController extends CrudController
     protected
     function setupCreateOperation(): void
     {
+
+
         CRUD::setValidation(NewsRequest::class);
         CRUD::field('title')->label("Tiêu đề");
+        CRUD::field('slug')->type("hidden");
         CRUD::field('description')->label("Mô tả ngắn");
         CRUD::field('body')->type("adonis-editor");
+        CRUD::field('pin')->type("switch")->label("Ghim bài viết");
         CRUD::field('draft')->type("switch")->label("Thư mục nháp");
         CRUD::field('status')->label("Trạng thái")->type("select_from_array")->options($this->status());
         CRUD::field('thumbnail')->type("image")->crop(true)->aspect_ratio(16 / 9);
+        CRUD::addField([
+            'name' => 'thumbnail',
+            'type' => 'image',
+            'crop' => true,
+            'aspect_ratio' => 16 / 9,
+            'upload' => true,
+            'disk' => 'uploads'
+        ]);
         CRUD::field('type_id')->label("Trạng thái")->type("select_from_array")->options($this->type());;
 
         /**
