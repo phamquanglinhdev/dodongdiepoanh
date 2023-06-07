@@ -14,12 +14,11 @@ class UploadController extends Controller
         /**
          * @var UploadedFile $upload
          */
-        $upload = $request->file("upload");
+        $upload = $request->file("file");
         $upload->move(public_path() . "/uploads/news/", $upload->getClientOriginalName());
         $url = "/uploads/news/" . $upload->getClientOriginalName();
         return [
-            "uploaded" => "true",
-            "url" => url($url)
+            "location" => url($url)
         ];
     }
 }
