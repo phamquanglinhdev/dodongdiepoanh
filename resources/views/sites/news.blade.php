@@ -29,7 +29,7 @@
                 </div>
                 <div class="row">
                     @foreach($newsListViewModel->getNews() as $news)
-                        <div class="col-xl-3 col-lg-4  col-sm-6 col-12 mb-4">
+                        <div class="col-lg-4  col-sm-6 col-12 mb-4">
                             <a href="{{$news->getSlug()}}" class="text-reset">
                                 <div class="card border">
                                     <div class="ratio ratio-16x9">
