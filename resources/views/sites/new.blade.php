@@ -27,6 +27,7 @@
             }
             .content img {
                 width: 100% !important;
+                height: auto !important;
             }
             figure {
                 text-align: center;
