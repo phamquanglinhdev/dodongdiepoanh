@@ -31,7 +31,7 @@
                     @foreach($newsListViewModel->getNews() as $news)
                         <div class="col-lg-4  col-sm-6 col-12 mb-4">
                             <a href="{{$news->getSlug()}}" class="text-reset">
-                                <div class="card border">
+                                <div class="card border h-100">
                                     <div class="ratio ratio-16x9">
                                         <img src="{{url($news->getThumbnail())}}"
                                              class="card-img-top"
