@@ -33,8 +33,16 @@
 @endif
 
 @if(permission("manager"))
-    <li class="nav-item"><a class="nav-link" href="{{ backpack_url('project') }}"><i
-                class="nav-icon la la-building"></i> Công trình</a></li>
+    <li class="nav-item nav-dropdown">
+        <a class="nav-link nav-dropdown-toggle" href="#"><i class="nav-icon la la-building-o"></i> Công trình tiêu biểu</a>
+        <ul class="nav-dropdown-items">
+            <li class="nav-item"><a class="nav-link" href="{{ backpack_url('struct/create') }}"><i
+                        class="nav-icon la la-list"></i> Đầu
+                    mục CTTB </a></li>
+            <li class="nav-item"><a class="nav-link" href="{{ backpack_url('project') }}"><i
+                        class="nav-icon la la-building"></i> Công trình</a></li>
+        </ul>
+    </li>
     <li class="nav-item"><a class="nav-link" href="{{ backpack_url('banner') }}"><i class="nav-icon la la-images"></i>
             Banner/Slider</a></li>
     <li class="nav-item"><a class="nav-link" href="{{ backpack_url('page') }}"><i class="nav-icon la la-pager"></i>
@@ -48,11 +56,3 @@
             Backups</a></li>
 @endif
 
-{{--<li class="nav-item"><a class="nav-link" href="{{ backpack_url('tag') }}"><i class="nav-icon la la-question"></i> Tags</a></li>--}}
-
-
-
-
-
-
-<li class="nav-item"><a class="nav-link" href="{{ backpack_url('top-product') }}"><i class="nav-icon la la-question"></i> Top products</a></li>
