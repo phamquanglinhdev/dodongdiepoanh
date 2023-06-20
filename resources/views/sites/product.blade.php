@@ -25,7 +25,7 @@
         <div class="row">
             <div class="col-md-6 col-12">
                 <div class="img-fluid p-3">
-                    <img alt="product" class="w-100 rounded" id="big-img" src="{{url($product->getThumbnail1())}}">
+                    <img alt="product" class="w-100 rounded" id="big-img" src="{{url($product->getThumbnail1())}}" title="{{$product->getName()}}">
                     <div class="row my-4">
                         <div class="col">
                             <div class="img-fluid">
