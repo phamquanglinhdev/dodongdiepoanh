@@ -51,8 +51,8 @@
                         <div class="col-lg-3 mb-3 col-6 p-lg-3 p-1">
                             <a href="{{route("product",$product->getId())}}">
                                 <div class="card rounded-0 p-lg-0 border h-100">
-                                    <img src="{{url($product->getThumbnail())}}" class="card-img-top rounded-0"
-                                         alt="Fissure in Sandstone"/>
+                                    <img src="{{url($product->getThumbnail())}}" alt="{{$product->getName()}}" title="{{$product->getName()}}" class="card-img-top rounded-0"
+                                        />
                                     <div class="card-body">
                                         <div
                                             class="card-title text-main fw-bold text-uppercase ">{{$product->getName()}}</div>

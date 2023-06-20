@@ -29,27 +29,27 @@
                     <div class="row my-4">
                         <div class="col">
                             <div class="img-fluid">
-                                <img class="w-100 small-img" src="{{url($product->getThumbnail1())}}" alt="product">
+                                <img class="w-100 small-img" src="{{url($product->getThumbnail1())}}" alt="product" title="{{$product->getName()}}">
                             </div>
                         </div>
                         <div class="col">
                             <div class="img-fluid">
-                                <img class="w-100 small-img" src="{{url($product->getThumbnail2())}}" alt="product">
+                                <img class="w-100 small-img" src="{{url($product->getThumbnail2())}}" alt="product" title="{{$product->getName()}}">
                             </div>
                         </div>
                         <div class="col">
                             <div class="img-fluid">
-                                <img class="w-100 small-img" src="{{url($product->getThumbnail3())}}" alt="product">
+                                <img class="w-100 small-img" src="{{url($product->getThumbnail3())}}" alt="product" title="{{$product->getName()}}">
                             </div>
                         </div>
                         <div class="col">
                             <div class="img-fluid">
-                                <img class="w-100 small-img" src="{{url($product->getThumbnail4())}}" alt="product">
+                                <img class="w-100 small-img" src="{{url($product->getThumbnail4())}}" alt="product" title="{{$product->getName()}}">
                             </div>
                         </div>
                         <div class="col">
                             <div class="img-fluid">
-                                <img class="w-100 small-img" src="{{url($product->getThumbnail5())}}" alt="product">
+                                <img class="w-100 small-img" src="{{url($product->getThumbnail5())}}" alt="product" title="{{$product->getName()}}">
                             </div>
                         </div>
                     </div>
